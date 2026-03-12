@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(C:/Users/swiat/Projects/magisterka/method_2/venv/Scripts/pip list:*)",
+      "Bash(C:/Users/swiat/Projects/magisterka/method_2/venv/Scripts/pip show:*)",
+      "Bash(cd C:/Users/swiat/Projects/magisterka/method_2 && venv/Scripts/python experiments/experiment_19/run.py)",
+      "Bash(cd C:/Users/swiat/Projects/magisterka/method_2 && venv/Scripts/pip install cmaes -q)"
+    ]
+  }
+}
