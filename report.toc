@@ -1,0 +1,14 @@
+\babel@toc {polish}{}\relax 
+\contentsline {section}{\numberline {1}Wprowadzenie}{2}{section.1}%
+\contentsline {section}{\numberline {2}Przegląd ESN}{2}{section.2}%
+\contentsline {section}{\numberline {3}Przegląd zadań}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}NARMA-10 i NARMA-30}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Mackey-Glass i Lorenz}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Proponowane podejście - Isospectral ESN}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Rozkład wartości własnych - zespół Ginibrego}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Generowanie rzadkiej macierzy z zadanym rozkładem wartości własnych}{4}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Wstępne wyniki}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}NARMA-10}{4}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}NARMA-30}{5}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Komentarz}{5}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Dalsze prace}{6}{section.6}%

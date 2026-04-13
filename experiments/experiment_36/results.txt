@@ -1,0 +1,9 @@
+Best val steps until divergence: 996.0
+Test steps until divergence: 440
+spectral_radius: 0.9430195960329947
+sparsity: 0.970821447559039
+leaky_rate: 0.58296912015603
+ridge: 0.006839475459497407
+noise: 0.0003145111203387181
+input_scaling: 3.606083070024613
+feedback_scaling: 0.9380300216317876

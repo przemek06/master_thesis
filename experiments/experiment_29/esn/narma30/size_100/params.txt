@@ -1,0 +1,3 @@
+Val NMSE:  0.481094
+Test NMSE: 0.512943
+Best params: {'spectral_radius': 1.2034161124419218, 'sparsity': 0.7241469682936542, 'input_scaling': 0.944534522590545, 'leaky_rate': 0.7109673418685402, 'ridge': 0.040492470478471834}

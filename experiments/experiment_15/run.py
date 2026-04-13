@@ -11,7 +11,7 @@ from models.esn import ESN
 HERE = os.path.dirname(__file__)
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
-N_RESERVOIR = 200
+N_RESERVOIR = 1000
 WARMUP = 100
 
 
@@ -25,15 +25,20 @@ u_train, y_train, u_val, y_val, u_test, y_test = load()
 def objective(trial):
     params = {
         "spectral_radius": trial.suggest_float("spectral_radius", 0.1, 1.5),
-        "sparsity":        trial.suggest_float("sparsity", 0.5, 0.99),
+        "sparsity":        trial.suggest_float("sparsity", 0.95, 0.99),
         "input_scaling":   trial.suggest_float("input_scaling", 0.1, 2.0),
         "leaky_rate":      trial.suggest_float("leaky_rate", 0.1, 1.0),
         "ridge":           trial.suggest_float("ridge", 1e-9, 1e-1, log=True),
+        "noise":           trial.suggest_float("noise", 1e-1, 1e+1, log=True),
     }
     esn = ESN(n_inputs=1, n_reservoir=N_RESERVOIR, n_outputs=1, seed=0, **params)
     esn.fit(u_train, y_train, warmup=WARMUP)
     y_pred = esn.predict_autonomous(u_val[:WARMUP], len(u_val) - WARMUP)
-    return nmse(y_val[WARMUP:], y_pred)
+    y_true = y_val[WARMUP:]
+    score = min(nmse(y_true, y_pred), 2.0)
+    var_ratio = np.var(y_pred) / (np.var(y_true) + 1e-8)
+    score += max(0.0, 1.0 - var_ratio)
+    return score
 
 
 study = optuna.create_study(direction="minimize")

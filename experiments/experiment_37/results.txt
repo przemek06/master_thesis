@@ -1,0 +1,10 @@
+Best val steps until divergence: 996.0
+Test steps until divergence: 84
+r_min: 0.8642383333090797
+r_max: 0.8852339812675334
+alpha: 9.313090374937277
+leaky_rate: 0.7840721935999412
+ridge: 0.004641423252911011
+noise: 3.258561322513207e-05
+input_scaling: 2.972515441730057
+feedback_scaling: 0.9813222526559748

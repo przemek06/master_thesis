@@ -1,0 +1,3 @@
+Val steps until divergence: 309
+Test NMSE: 1.420655
+Test steps until divergence: 498

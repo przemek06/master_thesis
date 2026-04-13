@@ -4,7 +4,22 @@
       "Bash(C:/Users/swiat/Projects/magisterka/method_2/venv/Scripts/pip list:*)",
       "Bash(C:/Users/swiat/Projects/magisterka/method_2/venv/Scripts/pip show:*)",
       "Bash(cd C:/Users/swiat/Projects/magisterka/method_2 && venv/Scripts/python experiments/experiment_19/run.py)",
-      "Bash(cd C:/Users/swiat/Projects/magisterka/method_2 && venv/Scripts/pip install cmaes -q)"
+      "Bash(cd C:/Users/swiat/Projects/magisterka/method_2 && venv/Scripts/pip install cmaes -q)",
+      "Bash(cd \"/c/Users/swiat/Projects/magisterka/method_2\" && python experiments/experiment_24/run.py 2>&1)",
+      "Bash(cd \"/c/Users/swiat/Projects/magisterka/method_2\" && python3 experiments/experiment_24/run.py 2>&1)",
+      "Read(//usr/local/**)",
+      "Read(//c/Users/swiat/AppData/Local/Programs/Python/**)",
+      "Bash(command -v py)",
+      "Bash(cd \"/c/Users/swiat/Projects/magisterka/method_2\" && /c/Users/swiat/AppData/Local/Programs/Python/Python313/python.exe experiments/experiment_24/run.py 2>&1)",
+      "Read(//c/Users/swiat/AppData/Local/miniconda3/**)",
+      "Read(//c/Users/swiat/AppData/Local/anaconda3/**)",
+      "Read(//c/ProgramData/miniconda3/**)",
+      "Bash(cd \"/c/Users/swiat/Projects/magisterka/method_2\" && venv/Scripts/python experiments/experiment_24/run.py 2>&1)",
+      "Bash(taskkill //F //IM python.exe 2>/dev/null; echo \"done\")",
+      "Bash(for i:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/swiat/Projects/magisterka/method_2/experiments/experiment_$i/**)",
+      "Bash(done)"
     ]
   }
 }

@@ -11,7 +11,7 @@ from models.esn import ESN
 HERE = os.path.dirname(__file__)
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
-N_RESERVOIR = 200
+N_RESERVOIR = 500
 WARMUP = 100
 
 
@@ -29,6 +29,7 @@ def objective(trial):
         "input_scaling":   trial.suggest_float("input_scaling", 0.1, 2.0),
         "leaky_rate":      trial.suggest_float("leaky_rate", 0.1, 1.0),
         "ridge":           trial.suggest_float("ridge", 1e-9, 1e-1, log=True),
+        "noise":           trial.suggest_float("noise", 1e-5, 1e-1, log=True),
     }
     esn = ESN(n_inputs=1, n_reservoir=N_RESERVOIR, n_outputs=1, seed=0, **params)
     esn.fit(u_train, y_train, warmup=WARMUP)

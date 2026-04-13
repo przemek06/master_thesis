@@ -14,9 +14,9 @@ N = 200
 R_MIN = 0.5
 R_MAX = 0.95
 ALPHA = 2.0
-SPARSITY = 0.9
-ITERATIONS = 300
-THRESHOLD = 0.01
+SPARSITY = 0.95
+ITERATIONS = 100
+THRESHOLD = 0.03
 SEED = 42
 
 eigenvalue_fn = lambda size: sample_eigenvalues_ginibre(R_MIN, R_MAX, ALPHA, size)

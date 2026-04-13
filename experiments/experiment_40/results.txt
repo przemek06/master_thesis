@@ -1,0 +1,28 @@
+Best val mean steps until divergence: 657.2
+Test mean steps until divergence: 521.7
+Test std: 115.2
+Test min: 362
+Test max: 768
+
+Per-seed test steps:
+  seed 6: 468
+  seed 7: 467
+  seed 8: 527
+  seed 9: 362
+  seed 10: 414
+  seed 11: 494
+  seed 12: 666
+  seed 13: 586
+  seed 14: 465
+  seed 15: 768
+
+Best hyperparameters:
+  r_min: 0.4664912634463507
+  r_max: 0.9107909688450276
+  sparsity: 0.9722372224003438
+  alpha: 7.870937284078
+  leaky_rate: 0.4789564915209456
+  ridge: 0.00153591379509492
+  noise: 9.081287597053994e-06
+  input_scaling: 4.179038366543673
+  feedback_scaling: 0.2348551153392217

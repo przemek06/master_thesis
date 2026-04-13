@@ -124,7 +124,7 @@ def generate_isospectral_sparse_matrix(eigenvalue_fn, n, sparsity, iterations=20
     return W
 
 
-def generate_isospectral_sparse_orthogonal_matrix(eigenvalue_fn, n, sparsity, iterations=200, threshold=0.01, seed=None, n_samples=10, diag_penalty=20.0):
+def generate_isospectral_sparse_orthogonal_matrix(eigenvalue_fn, n, sparsity, iterations=200, threshold=0.01, seed=None, n_samples=100, diag_penalty=0.25):
     import torch
     import pymanopt
     from pymanopt.manifolds import Stiefel
@@ -153,6 +153,59 @@ def generate_isospectral_sparse_orthogonal_matrix(eigenvalue_fn, n, sparsity, it
     Q = result.point
     Q[np.abs(Q) < threshold] = 0
     return Q
+
+
+def precompute_sparse_schur(sparsity_mask, n_iter=100, seed=None):
+    from scipy.linalg import schur
+    from scipy.optimize import linear_sum_assignment
+
+    n = sparsity_mask.shape[0]
+    rng = np.random.default_rng(seed)
+
+    radii = rng.uniform(0.1, 0.99, n)
+    angles = rng.uniform(0, 2 * np.pi, n)
+    template_eigs = radii * np.exp(1j * angles)
+
+    Q, _ = np.linalg.qr(rng.standard_normal((n, n)) + 1j * rng.standard_normal((n, n)))
+    W = (Q @ np.diag(template_eigs) @ Q.conj().T) * sparsity_mask
+
+    for _ in range(n_iter):
+        T, Z = schur(W, output='complex')
+        actual_diag = np.diag(T)
+        cost = np.abs(actual_diag[:, None] - template_eigs[None, :])
+        row_ind, col_ind = linear_sum_assignment(cost)
+        new_diag = np.empty(n, dtype=complex)
+        new_diag[row_ind] = template_eigs[col_ind]
+        np.fill_diagonal(T, new_diag)
+        W = (Z @ T @ Z.conj().T) * sparsity_mask
+
+    return schur(W, output='complex')
+
+
+def generate_sparse_schur(T_template, Z_template, sparsity_mask, eigenvalues, n_refine=20):
+    from scipy.linalg import schur
+    from scipy.optimize import linear_sum_assignment
+
+    n = len(eigenvalues)
+    T = T_template.copy()
+    cost = np.abs(np.diag(T)[:, None] - eigenvalues[None, :])
+    row_ind, col_ind = linear_sum_assignment(cost)
+    new_diag = np.empty(n, dtype=complex)
+    new_diag[row_ind] = eigenvalues[col_ind]
+    np.fill_diagonal(T, new_diag)
+    W = (Z_template @ T @ Z_template.conj().T) * sparsity_mask
+
+    for _ in range(n_refine):
+        T, Z = schur(W, output='complex')
+        actual_diag = np.diag(T)
+        cost = np.abs(actual_diag[:, None] - eigenvalues[None, :])
+        row_ind, col_ind = linear_sum_assignment(cost)
+        new_diag = np.empty(n, dtype=complex)
+        new_diag[row_ind] = eigenvalues[col_ind]
+        np.fill_diagonal(T, new_diag)
+        W = (Z @ T @ Z.conj().T) * sparsity_mask
+
+    return W
 
 
 def generate_analytic_map_matrix(n, sparsity=0.9):
