@@ -1,0 +1,11 @@
+Val mean:  549.4 ± 276.6
+Test mean: 273.1 ± 92.5
+
+Best params:
+  r: 0.8719512117153886
+  sparsity: 0.9818477270853504
+  leaky_rate: 0.411942600615228
+  ridge: 0.06542929896923622
+  noise: 7.466594854773095e-05
+  input_scaling: 3.1323963746397414
+  feedback_scaling: 0.3400927822684703

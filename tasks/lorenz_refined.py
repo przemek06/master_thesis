@@ -39,6 +39,27 @@ def _generate(length, seed, label=""):
     return x
 
 
+def _generate_3d(length, seed, label="", subsample=1):
+    print(f"  Generating {label} ({length} steps)...", flush=True)
+    rng = np.random.default_rng(seed)
+    state = rng.standard_normal(3)
+    total = TRANSIENT + length * subsample
+    trajectory = np.empty((total, 3))
+
+    for t in range(total):
+        k1 = _lorenz(state)
+        k2 = _lorenz(state + 0.5 * DT * k1)
+        k3 = _lorenz(state + 0.5 * DT * k2)
+        k4 = _lorenz(state + DT * k3)
+        state = state + (DT / 6) * (k1 + 2 * k2 + 2 * k3 + k4)
+        trajectory[t] = state
+
+    traj = trajectory[TRANSIENT::subsample][:length]
+    traj = (traj - traj.mean(axis=0)) / traj.std(axis=0)
+    print(f"  Done {label}.", flush=True)
+    return traj
+
+
 def load():
     if not os.path.exists(CACHE_PATH):
         os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)

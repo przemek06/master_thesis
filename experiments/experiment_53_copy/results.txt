@@ -1,0 +1,48 @@
+=== Summary ===
+ESNFeedback     test mean of means: 0.2690 ± 0.0846
+ESNCustomizable test mean of means: 0.1746 ± 0.0275
+
+Paired t-test: t=4.097, p=0.0027 (significant at alpha=0.05)
+Better model: esn_customizable
+
+=== Per-run results ===
+
+Run 0 (data_offset=0)
+  ESNFeedback     val mean: 0.1638, test mean: 0.1668
+  ESNCustomizable val mean: 0.1469, test mean: 0.1489
+
+Run 1 (data_offset=30)
+  ESNFeedback     val mean: 0.3525, test mean: 0.3523
+  ESNCustomizable val mean: 0.1769, test mean: 0.2421
+
+Run 2 (data_offset=60)
+  ESNFeedback     val mean: 0.2037, test mean: 0.2123
+  ESNCustomizable val mean: 0.1710, test mean: 0.1619
+
+Run 3 (data_offset=90)
+  ESNFeedback     val mean: 0.1809, test mean: 0.1802
+  ESNCustomizable val mean: 0.1595, test mean: 0.1573
+
+Run 4 (data_offset=120)
+  ESNFeedback     val mean: 0.3897, test mean: 0.3921
+  ESNCustomizable val mean: 0.2010, test mean: 0.2039
+
+Run 5 (data_offset=150)
+  ESNFeedback     val mean: 0.1895, test mean: 0.1928
+  ESNCustomizable val mean: 0.1544, test mean: 0.1557
+
+Run 6 (data_offset=180)
+  ESNFeedback     val mean: 0.2911, test mean: 0.2926
+  ESNCustomizable val mean: 0.2651, test mean: 0.1863
+
+Run 7 (data_offset=210)
+  ESNFeedback     val mean: 0.2677, test mean: 0.2664
+  ESNCustomizable val mean: 0.1579, test mean: 0.1537
+
+Run 8 (data_offset=240)
+  ESNFeedback     val mean: 0.4157, test mean: 0.4093
+  ESNCustomizable val mean: 0.1816, test mean: 0.1701
+
+Run 9 (data_offset=270)
+  ESNFeedback     val mean: 0.2270, test mean: 0.2255
+  ESNCustomizable val mean: 0.1662, test mean: 0.1658

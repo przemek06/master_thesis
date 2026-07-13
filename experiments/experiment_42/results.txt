@@ -1,0 +1,132 @@
+=== ESNFeedback ===
+Best val mean steps: 466.3
+Test mean: 284.1, std: 103.2, min: 159, max: 490
+Per-test steps:
+  test_0: 176
+  test_1: 467
+  test_2: 477
+  test_3: 224
+  test_4: 191
+  test_5: 321
+  test_6: 381
+  test_7: 483
+  test_8: 328
+  test_9: 385
+  test_10: 433
+  test_11: 275
+  test_12: 315
+  test_13: 172
+  test_14: 273
+  test_15: 287
+  test_16: 278
+  test_17: 273
+  test_18: 377
+  test_19: 198
+  test_20: 169
+  test_21: 167
+  test_22: 279
+  test_23: 169
+  test_24: 164
+  test_25: 238
+  test_26: 185
+  test_27: 159
+  test_28: 225
+  test_29: 174
+  test_30: 262
+  test_31: 196
+  test_32: 175
+  test_33: 316
+  test_34: 393
+  test_35: 471
+  test_36: 167
+  test_37: 356
+  test_38: 476
+  test_39: 310
+  test_40: 424
+  test_41: 272
+  test_42: 490
+  test_43: 336
+  test_44: 280
+  test_45: 190
+  test_46: 199
+  test_47: 197
+  test_48: 171
+  test_49: 281
+Best hyperparameters:
+  spectral_radius: 0.8967106759933072
+  sparsity: 0.9722822493249618
+  leaky_rate: 0.6997250968997061
+  ridge: 0.0009560190576338134
+  noise: 2.31702551777685e-05
+  input_scaling: 3.9054175269331175
+  feedback_scaling: 0.10927373915590569
+
+=== ESNCustomizable ===
+Best val mean steps: 418.8
+Test mean: 302.1, std: 140.5, min: 17, max: 894
+Per-test steps:
+  test_0: 201
+  test_1: 181
+  test_2: 478
+  test_3: 267
+  test_4: 192
+  test_5: 403
+  test_6: 365
+  test_7: 381
+  test_8: 400
+  test_9: 386
+  test_10: 385
+  test_11: 384
+  test_12: 396
+  test_13: 390
+  test_14: 272
+  test_15: 430
+  test_16: 324
+  test_17: 364
+  test_18: 179
+  test_19: 181
+  test_20: 216
+  test_21: 171
+  test_22: 308
+  test_23: 273
+  test_24: 572
+  test_25: 99
+  test_26: 166
+  test_27: 17
+  test_28: 271
+  test_29: 175
+  test_30: 278
+  test_31: 219
+  test_32: 476
+  test_33: 193
+  test_34: 533
+  test_35: 277
+  test_36: 166
+  test_37: 358
+  test_38: 894
+  test_39: 357
+  test_40: 180
+  test_41: 176
+  test_42: 289
+  test_43: 238
+  test_44: 233
+  test_45: 191
+  test_46: 317
+  test_47: 220
+  test_48: 370
+  test_49: 312
+Best hyperparameters:
+  r_min: 0.8783252569256078
+  r_max: 0.9326252873372656
+  sparsity: 0.9601732131754638
+  alpha: 8.818564376135797
+  leaky_rate: 0.7021013371425393
+  ridge: 0.0004842720250980257
+  noise: 0.000898179995636623
+  input_scaling: 0.976626308192735
+  feedback_scaling: 0.404729533986071
+
+=== Statistical Test ===
+Wilcoxon signed-rank test (paired, two-sided)
+W = 516.5, p = 0.2426
+ESNCustomizable has higher mean steps. p=0.2426 (not significant at alpha=0.05)

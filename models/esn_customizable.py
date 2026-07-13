@@ -68,6 +68,36 @@ class ESNCustomizable:
             self.W_out = torch.linalg.solve(A, X.T @ Y).T
         return self
 
+    def fit_batch(self, U, Y, warmup=0):
+        with torch.no_grad():
+            U = torch.tensor(U, dtype=torch.float32, device=self.device)
+            Y_t = torch.tensor(Y, dtype=torch.float32, device=self.device)
+            B, T, _ = U.shape
+            dtype = torch.complex64 if self._is_complex else torch.float32
+            state = torch.zeros(B, self.n_reservoir, dtype=dtype, device=self.device)
+            fb = torch.zeros(B, self.n_outputs, device=self.device)
+            states = torch.empty(T, B, self._state_size, device=self.device)
+
+            for t in range(T):
+                inp = torch.cat([U[:, t, :], self.bias.expand(B, -1)], dim=1) if self.bias is not None else U[:, t, :]
+                pre = inp @ self.W_in.T + state @ self.W.T + fb @ self.W_fb.T
+                if self.noise > 0.0:
+                    pre = pre + self.noise * torch.randn(B, self.n_reservoir, dtype=dtype, device=self.device)
+                state = (1 - self.leaky_rate) * state + self.leaky_rate * torch.tanh(pre)
+                flat = torch.cat([state.real, state.imag], dim=1) if self._is_complex else state
+                states[t] = flat
+                fb = Y_t[:, t, :]
+
+            X = states[warmup:].reshape(-1, self._state_size)
+            Y_flat = Y_t[:, warmup:, :].permute(1, 0, 2).reshape(-1, self.n_outputs)
+            A = X.T @ X + self.ridge * torch.eye(self._state_size, device=self.device)
+            self.W_out = torch.linalg.solve(A, X.T @ Y_flat).T
+        return self
+
+    def reset_state(self):
+        dtype = torch.complex64 if self._is_complex else torch.float32
+        self.last_state = torch.zeros(self.n_reservoir, dtype=dtype, device=self.device)
+
     def predict(self, u, initial_state=None):
         with torch.no_grad():
             states, last_state = self._run(u, initial_state=initial_state)

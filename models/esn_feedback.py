@@ -56,6 +56,34 @@ class ESNFeedback:
             self.W_out = torch.linalg.solve(A, X.T @ Y).T
         return self
 
+    def fit_batch(self, U, Y, warmup=0):
+        with torch.no_grad():
+            U = torch.tensor(U, dtype=torch.float32, device=self.device)
+            Y_t = torch.tensor(Y, dtype=torch.float32, device=self.device)
+            B, T, _ = U.shape
+            bias = torch.full((1,), 0.2, device=self.device).expand(B, 1)
+            state = torch.zeros(B, self.n_reservoir, device=self.device)
+            fb = torch.zeros(B, self.n_outputs, device=self.device)
+            states = torch.empty(T, B, self.n_reservoir, device=self.device)
+
+            for t in range(T):
+                inp = torch.cat([U[:, t, :], bias], dim=1)
+                pre = inp @ self.W_in.T + state @ self.W.T + fb @ self.W_fb.T
+                if self.noise > 0.0:
+                    pre = pre + self.noise * torch.randn_like(pre)
+                state = (1 - self.leaky_rate) * state + self.leaky_rate * torch.tanh(pre)
+                states[t] = state
+                fb = Y_t[:, t, :]
+
+            X = states[warmup:].reshape(-1, self.n_reservoir)
+            Y_flat = Y_t[:, warmup:, :].permute(1, 0, 2).reshape(-1, self.n_outputs)
+            A = X.T @ X + self.ridge * torch.eye(self.n_reservoir, device=self.device)
+            self.W_out = torch.linalg.solve(A, X.T @ Y_flat).T
+        return self
+
+    def reset_state(self):
+        self.last_state = torch.zeros(self.n_reservoir, device=self.device)
+
     def predict(self, u, initial_state=None):
         with torch.no_grad():
             states = self._run(u, initial_state=initial_state)

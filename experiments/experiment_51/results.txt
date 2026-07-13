@@ -1,0 +1,28 @@
+Best val NMSE: 0.1529
+Test mean NMSE: 0.1501
+Test std: 0.0075
+Test min: 0.1345
+Test max: 0.1607
+
+Per-seed test NMSE:
+  seed 20: 0.1542
+  seed 21: 0.1506
+  seed 22: 0.1568
+  seed 23: 0.1449
+  seed 24: 0.1559
+  seed 25: 0.1505
+  seed 26: 0.1521
+  seed 27: 0.1345
+  seed 28: 0.1409
+  seed 29: 0.1607
+
+Best hyperparameters:
+  r_min: 0.7971446580372423
+  r_max: 0.9311548553309578
+  alpha: 2.203080127228465
+  sparsity: 0.98281744489391
+  leaky_rate: 0.9868402081350034
+  ridge: 7.366298603173945e-05
+  noise: 0.00036011416070464726
+  input_scaling: 2.677579969959182
+  feedback_scaling: 0.08000691243268024
