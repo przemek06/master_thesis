@@ -186,6 +186,22 @@ plt.tight_layout()
 plt.savefig(os.path.join(HERE, "mc_bar.png"), dpi=150)
 plt.close()
 
+u, y = test_list[0]
+pred = model.predict(u)[WARMUP:]
+target = y[WARMUP:]
+fig, axes = plt.subplots(2, 3, figsize=(15, 9))
+for ax, k in zip(axes.flat, [1, 5, 10, 25, 50, 100]):
+    mc_k = np.corrcoef(pred[:, k - 1], target[:, k - 1])[0, 1] ** 2
+    ax.scatter(target[:, k - 1], pred[:, k - 1], s=4, alpha=0.3, color="darkorange")
+    ax.plot([-0.8, 0.8], [-0.8, 0.8], color="black", linewidth=1)
+    ax.set_title(f"k={k}, MC_k={mc_k:.3f}")
+    ax.set_xlabel("target u(t-k)")
+    ax.set_ylabel("predicted")
+fig.suptitle("ESNCustomizable — Target vs predicted (last run, first test series)")
+plt.tight_layout()
+plt.savefig(os.path.join(HERE, "target_vs_pred.png"), dpi=150)
+plt.close()
+
 median_run = int(np.argsort(run_means)[N_RUNS // 2])
 eigs = np.linalg.eigvals(stored_W_best[median_run])
 theta = np.linspace(0, 2 * np.pi, 500)
