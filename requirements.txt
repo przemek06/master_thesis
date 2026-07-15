@@ -6,3 +6,4 @@ matplotlib==3.10.8
 scipy==1.17.1
 optuna==4.7.0
 pymanopt==2.2.1
+pandas

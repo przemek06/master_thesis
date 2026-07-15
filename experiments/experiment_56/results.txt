@@ -1,0 +1,85 @@
+=== Statistics of nonzero reservoir entries (pooled over matrices) ===
+
+[ring_narrow] params={'r_min': 0.85, 'r_max': 0.9, 'alpha': 1.0}, fraction_zero=0.848, spectral_radius=0.900±0.003
+  real: n=7585, mean=-0.0030, var=0.02589, min=-0.8851, max=0.8846, median=0.0007, skew=-0.480, kurt=16.060
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+  imag: n=7585, mean=-0.0001, var=0.02550, min=-0.8963, max=0.8888, median=0.0007, skew=-0.030, kurt=16.109
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+   abs: n=7585, mean=0.0898, var=0.04334, min=0.0100, max=0.9032, median=0.0198, skew=3.122, kurt=8.336
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+
+[ring_pushed] params={'r_min': 0.1, 'r_max': 0.9, 'alpha': 8.0}, fraction_zero=0.852, spectral_radius=0.906±0.004
+  real: n=7409, mean=-0.0006, var=0.02425, min=-0.8939, max=0.9031, median=-0.0007, skew=0.155, kurt=16.106
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+  imag: n=7409, mean=0.0006, var=0.02491, min=-0.8783, max=0.8916, median=0.0003, skew=0.183, kurt=16.308
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+   abs: n=7409, mean=0.0872, var=0.04155, min=0.0100, max=0.9050, median=0.0195, skew=3.144, kurt=8.430
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+
+[annulus] params={'r_min': 0.3, 'r_max': 0.9, 'alpha': 2.0}, fraction_zero=0.806, spectral_radius=0.914±0.008
+  real: n=9718, mean=0.0016, var=0.01586, min=-0.8754, max=0.8887, median=0.0002, skew=0.221, kurt=22.067
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+  imag: n=9718, mean=-0.0020, var=0.01581, min=-0.8600, max=0.8929, median=0.0003, skew=-0.069, kurt=21.894
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+   abs: n=9718, mean=0.0698, var=0.02681, min=0.0100, max=0.9149, median=0.0200, skew=3.725, kurt=13.054
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+
+[uniform_disk] params={'r_min': 0.0, 'r_max': 0.9, 'alpha': 1.0}, fraction_zero=0.697, spectral_radius=0.970±0.015
+  real: n=15157, mean=-0.0005, var=0.00696, min=-0.9549, max=0.9265, median=-0.0003, skew=-0.069, kurt=45.302
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+  imag: n=15157, mean=-0.0002, var=0.00678, min=-0.8711, max=0.9799, median=-0.0000, skew=0.291, kurt=44.803
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+   abs: n=15157, mean=0.0486, var=0.01138, min=0.0100, max=0.9829, median=0.0200, skew=5.360, kurt=32.398
+        KS normal p=0, KS uniform p=0, D'Agostino p=0
+
+=== MLE fits to real parts of nonzero entries ===
+
+[ring_narrow]
+     cauchy: AIC=-27800, loglik=13902, KS stat=0.0453, KS p=6.07e-14, params=[0.0009, 0.0129]
+  student_t: AIC=-27799, loglik=13902, KS stat=0.0446, KS p=1.42e-13, params=[1.0135, 0.0009, 0.0129]
+    laplace: AIC=-17862, loglik=8933, KS stat=0.2144, KS p=1.28e-306, params=[0.0007, 0.0567]
+     normal: AIC=-6184, loglik=3094, KS stat=0.3388, KS p=0, params=[-0.003, 0.1609]
+
+[ring_pushed]
+  student_t: AIC=-26535, loglik=13271, KS stat=0.0493, KS p=4.53e-16, params=[1.0504, -0.0005, 0.014]
+     cauchy: AIC=-26530, loglik=13267, KS stat=0.0498, KS p=2.03e-16, params=[-0.0005, 0.0138]
+    laplace: AIC=-17574, loglik=8789, KS stat=0.2002, KS p=1.15e-260, params=[-0.0007, 0.0562]
+     normal: AIC=-6528, loglik=3266, KS stat=0.3269, KS p=0, params=[-0.0006, 0.1557]
+
+[annulus]
+  student_t: AIC=-37407, loglik=18707, KS stat=0.0418, KS p=3.62e-15, params=[1.1586, -0.0001, 0.0136]
+     cauchy: AIC=-37335, loglik=18669, KS stat=0.0434, KS p=2.49e-16, params=[-0.0001, 0.0129]
+    laplace: AIC=-27577, loglik=13790, KS stat=0.1711, KS p=4.37e-249, params=[0.0002, 0.0445]
+     normal: AIC=-12689, loglik=6346, KS stat=0.3147, KS p=0, params=[0.0016, 0.1259]
+
+[uniform_disk]
+  student_t: AIC=-63213, loglik=31610, KS stat=0.0415, KS p=4.11e-23, params=[1.4749, -0.0002, 0.0143]
+     cauchy: AIC=-62546, loglik=31275, KS stat=0.0446, KS p=1.25e-26, params=[-0.0002, 0.0127]
+    laplace: AIC=-54008, loglik=27006, KS stat=0.1197, KS p=8.91e-190, params=[-0.0003, 0.031]
+     normal: AIC=-32266, loglik=16135, KS stat=0.2756, KS p=0, params=[-0.0005, 0.0835]
+
+=== MLE fits to imag parts of nonzero entries ===
+
+[ring_narrow]
+  student_t: AIC=-26821, loglik=13413, KS stat=0.0527, KS p=9.05e-19, params=[1.0329, 0.0007, 0.0141]
+     cauchy: AIC=-26819, loglik=13412, KS stat=0.0533, KS p=3.42e-19, params=[0.0007, 0.0139]
+    laplace: AIC=-17653, loglik=8829, KS stat=0.2037, KS p=1.51e-276, params=[0.0007, 0.0574]
+     normal: AIC=-6301, loglik=3153, KS stat=0.3252, KS p=0, params=[-0.0001, 0.1597]
+
+[ring_pushed]
+     cauchy: AIC=-27305, loglik=13655, KS stat=0.0433, KS p=1.57e-12, params=[0.0004, 0.0128]
+  student_t: AIC=-27305, loglik=13655, KS stat=0.0423, KS p=5.68e-12, params=[1.0212, 0.0004, 0.0129]
+    laplace: AIC=-17771, loglik=8887, KS stat=0.2111, KS p=3.16e-290, params=[0.0003, 0.0554]
+     normal: AIC=-6328, loglik=3166, KS stat=0.3300, KS p=0, params=[0.0006, 0.1578]
+
+[annulus]
+  student_t: AIC=-37255, loglik=18631, KS stat=0.0421, KS p=2.19e-15, params=[1.1713, 0.0004, 0.0138]
+     cauchy: AIC=-37172, loglik=18588, KS stat=0.0444, KS p=4.19e-17, params=[0.0005, 0.0131]
+    laplace: AIC=-27550, loglik=13777, KS stat=0.1715, KS p=2.39e-250, params=[0.0003, 0.0446]
+     normal: AIC=-12718, loglik=6361, KS stat=0.3132, KS p=0, params=[-0.002, 0.1257]
+
+[uniform_disk]
+  student_t: AIC=-63469, loglik=31737, KS stat=0.0377, KS p=3.98e-19, params=[1.4886, -0.0002, 0.0143]
+     cauchy: AIC=-62775, loglik=31390, KS stat=0.0441, KS p=4.68e-26, params=[-0.0002, 0.0127]
+    laplace: AIC=-54332, loglik=27168, KS stat=0.1169, KS p=7.59e-181, params=[-0.0, 0.0306]
+     normal: AIC=-32676, loglik=16340, KS stat=0.2748, KS p=0, params=[-0.0002, 0.0823]
