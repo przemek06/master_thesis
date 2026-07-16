@@ -4,6 +4,7 @@ import os
 RAW_PATH = os.path.join(os.path.dirname(__file__), "data", "electricityloaddiagrams20112014", "LD2011_2014.txt")
 CACHE_PATH = os.path.join(os.path.dirname(__file__), "data", "electricity_batch.npz")
 MAX_ZERO_FRACTION = 0.001
+MAX_FLAT_FRACTION = 0.1
 TRAIN_YEAR = 2012
 VAL_YEAR = 2013
 TEST_YEAR = 2014
@@ -18,8 +19,14 @@ def _generate():
     raw = df.to_numpy(dtype=np.float64)
     keep = (raw[0] != 0) & ((raw == 0).mean(0) < MAX_ZERO_FRACTION)
     hourly = df.loc[:, keep].resample("1h", closed="right", label="left").mean()
-    print(f"Kept {hourly.shape[1]} clients, {hourly.shape[0]} hourly steps.", flush=True)
-    return hourly.to_numpy(dtype=np.float32), hourly.index.year.to_numpy()
+    panel = hourly.to_numpy(dtype=np.float32)
+    years = hourly.index.year.to_numpy()
+
+    reference = panel[years == TRAIN_YEAR]
+    active = (np.diff(reference, axis=0) == 0).mean(0) < MAX_FLAT_FRACTION
+    panel = panel[:, active]
+    print(f"Kept {panel.shape[1]} clients, {panel.shape[0]} hourly steps.", flush=True)
+    return panel, years
 
 
 def _panel():
