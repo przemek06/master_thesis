@@ -1,0 +1,21 @@
+{
+  "config": {
+    "model": "ESN",
+    "task": "santafe_laser",
+    "n_optuna_trials": 100,
+    "n_reservoir": 400,
+    "warmup": 100,
+    "seed": 0
+  },
+  "val_nmse": 0.016285210630373467,
+  "test_nmse": 0.02609856387169665,
+  "persistence_test_nmse": 0.9218172105629348,
+  "best_params": {
+    "spectral_radius": 0.9308428810509465,
+    "sparsity": 0.9195937170318695,
+    "input_scaling": 3.6763457969545414,
+    "leaky_rate": 0.9009901048698191,
+    "ridge": 5.818994298218639e-08,
+    "noise": 0.00708698140469472
+  }
+}

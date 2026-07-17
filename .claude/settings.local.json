@@ -20,7 +20,8 @@
       "Bash(do echo:*)",
       "Read(//c/Users/swiat/Projects/magisterka/method_2/experiments/experiment_$i/**)",
       "Bash(done)",
-      "Bash(venv/Scripts/python.exe -m pip list)"
+      "Bash(venv/Scripts/python.exe -m pip list)",
+      "WebFetch(domain:reservoirpy.readthedocs.io)"
     ]
   }
 }

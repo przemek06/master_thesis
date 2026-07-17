@@ -1,0 +1,24 @@
+{
+  "config": {
+    "model": "ESNCustomizable (Ginibre isospectral W, feedback_scaling=0)",
+    "task": "santafe_laser",
+    "n_optuna_trials": 100,
+    "n_reservoir": 400,
+    "iso_iterations": 50,
+    "warmup": 100,
+    "seed": 0
+  },
+  "val_nmse": 0.01445832177837733,
+  "test_nmse": 0.009661987327853987,
+  "persistence_test_nmse": 0.9218172105629348,
+  "best_params": {
+    "r_min": 0.3621649087207689,
+    "r_max": 0.7166195506098383,
+    "alpha": 3.665571249290647,
+    "sparsity": 0.9678642469768108,
+    "input_scaling": 2.7711205262090233,
+    "leaky_rate": 0.9088047789307642,
+    "ridge": 0.07187573730706226,
+    "noise": 6.858528765369288e-05
+  }
+}
