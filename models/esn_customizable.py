@@ -5,12 +5,13 @@ import torch
 class ESNCustomizable:
     def __init__(self, n_inputs, n_reservoir, n_outputs, spectral_radius=0.9, sparsity=0.9, input_scaling=1.0,
                  leaky_rate=1.0, ridge=1e-6, noise=0.0, feedback_scaling=0.56,
-                 W_in=None, W=None, W_fb=None, bias=None, seed=None, device=None):
+                 W_in=None, W=None, W_fb=None, bias=None, readout_inputs=False, seed=None, device=None):
         self.n_reservoir = n_reservoir
         self.n_outputs = n_outputs
         self.leaky_rate = leaky_rate
         self.ridge = ridge
         self.noise = noise
+        self.readout_inputs = readout_inputs
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
 
         rng = np.random.default_rng(seed)
@@ -55,16 +56,28 @@ class ESNCustomizable:
             if y is not None:
                 fb = torch.tensor(y[t], dtype=torch.float32, device=self.device).reshape(self.n_outputs)
             else:
-                fb = self._flat(state) @ self.W_out.T
+                fb = self._readout_step(self._flat(state), u[t])
 
         return states, state
+
+    def _readout_step(self, flat_state, u_t):
+        if not self.readout_inputs:
+            return flat_state @ self.W_out.T
+        return torch.cat([flat_state, u_t, torch.ones(1, device=self.device)]) @ self.W_out.T
+
+    def _readout_features(self, states, u):
+        if not self.readout_inputs:
+            return states
+        u_t = torch.tensor(u, dtype=torch.float32, device=self.device)
+        ones = torch.ones(states.shape[0], 1, device=self.device)
+        return torch.cat([states, u_t, ones], dim=1)
 
     def fit(self, u, y, warmup=0):
         with torch.no_grad():
             states, _ = self._run(u, y=y)
-            X = states[warmup:]
+            X = self._readout_features(states, u)[warmup:]
             Y = torch.tensor(y[warmup:], dtype=torch.float32, device=self.device)
-            A = X.T @ X + self.ridge * torch.eye(self._state_size, device=self.device)
+            A = X.T @ X + self.ridge * torch.eye(X.shape[1], device=self.device)
             self.W_out = torch.linalg.solve(A, X.T @ Y).T
         return self
 
@@ -102,7 +115,7 @@ class ESNCustomizable:
         with torch.no_grad():
             states, last_state = self._run(u, initial_state=initial_state)
             self.last_state = last_state
-            return (states @ self.W_out.T).cpu().numpy()
+            return (self._readout_features(states, u) @ self.W_out.T).cpu().numpy()
 
     def predict_autonomous(self, n_steps, initial_state=None):
         with torch.no_grad():

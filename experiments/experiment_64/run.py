@@ -22,6 +22,7 @@ HORIZON = 24
 LAG = 24
 N_INPUTS = 6 + LAG
 N_OUTPUTS = 1
+READOUT_INPUTS = True
 SEED = 0
 PLOT_SHOW = 400
 
@@ -58,6 +59,7 @@ def build(params):
         ridge=params["ridge"],
         noise=params["noise"],
         feedback_scaling=params["feedback_scaling"],
+        readout_inputs=READOUT_INPUTS,
         seed=SEED,
         device="cpu",
     )
@@ -98,6 +100,7 @@ def main():
             "file": FILE,
             "horizon": HORIZON,
             "lag": LAG,
+            "readout_inputs": READOUT_INPUTS,
             "n_optuna_trials": N_OPTUNA_TRIALS,
             "n_reservoir": N_RESERVOIR,
             "warmup": WARMUP,
