@@ -20,13 +20,22 @@ def _raw(file):
     return loads, ot
 
 
-def load(file="ETTh1", horizon=0):
+def _lag_window(a, window):
+    n = len(a)
+    return np.concatenate(
+        [np.concatenate([np.zeros((k, a.shape[1]), a.dtype), a[:n - k]]) for k in range(window)],
+        axis=1,
+    )
+
+
+def load(file="ETTh1", horizon=24, lag=24):
     loads, ot = _raw(file)
     m = _steps_per_month(file)
     train_end, val_end, test_end = 12 * m, 16 * m, 20 * m
 
-    x = (loads - loads[:train_end].mean(0)) / loads[:train_end].std(0)
+    loads_std = (loads - loads[:train_end].mean(0)) / loads[:train_end].std(0)
     y = (ot - ot[:train_end].mean(0)) / ot[:train_end].std(0)
+    x = np.concatenate([loads_std, _lag_window(y, lag)], axis=1)
 
     def seg(a, b):
         u, t = x[a:b], y[a:b]

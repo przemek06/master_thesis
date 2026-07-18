@@ -18,8 +18,9 @@ WARMUP = 100
 N_OPTUNA_TRIALS = 100
 N_RESERVOIR = 400
 FILE = "ETTh1"
-HORIZON = 1
-N_INPUTS = 6
+HORIZON = 24
+LAG = 24
+N_INPUTS = 6 + LAG
 N_OUTPUTS = 1
 SEED = 0
 PLOT_SHOW = 400
@@ -41,7 +42,7 @@ def eval_nmse(model, series_list):
 
 
 def persistence_nmse(series_list):
-    scores = [nmse(y[WARMUP:-1], y[WARMUP + 1:]) for _, y in series_list]
+    scores = [nmse(y[WARMUP - HORIZON:-HORIZON], y[WARMUP:]) for _, y in series_list]
     return float(np.mean(scores))
 
 
@@ -63,7 +64,7 @@ def build(params):
 
 
 def main():
-    u_train, y_train, val_list, test_list = load(FILE, horizon=HORIZON)
+    u_train, y_train, val_list, test_list = load(FILE, horizon=HORIZON, lag=LAG)
 
     def objective(trial):
         params = {
@@ -96,6 +97,7 @@ def main():
             "task": "ett",
             "file": FILE,
             "horizon": HORIZON,
+            "lag": LAG,
             "n_optuna_trials": N_OPTUNA_TRIALS,
             "n_reservoir": N_RESERVOIR,
             "warmup": WARMUP,
