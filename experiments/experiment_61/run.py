@@ -19,6 +19,7 @@ ROOT = os.path.join(HERE, "..")
 WARMUP = 100
 N_RESERVOIR = 400
 ISO_ITERATIONS = 50
+READOUT_INPUTS = True
 SEEDS = list(range(10))
 PLOT_SHOW = 400
 
@@ -43,7 +44,7 @@ def build_esn(p, seed):
         n_inputs=1, n_reservoir=N_RESERVOIR, n_outputs=1,
         spectral_radius=p["spectral_radius"], sparsity=p["sparsity"],
         input_scaling=p["input_scaling"], leaky_rate=p["leaky_rate"],
-        ridge=p["ridge"], noise=p["noise"], seed=seed, device="cpu",
+        ridge=p["ridge"], noise=p["noise"], readout_inputs=READOUT_INPUTS, seed=seed, device="cpu",
     )
 
 
@@ -57,7 +58,7 @@ def build_ginibre(p, seed):
         n_inputs=1, n_reservoir=N_RESERVOIR, n_outputs=1,
         input_scaling=p["input_scaling"], leaky_rate=p["leaky_rate"],
         ridge=p["ridge"], noise=p["noise"], feedback_scaling=0.0,
-        W=W, bias=np.array([0.2]), seed=seed, device="cpu",
+        W=W, bias=np.array([0.2]), readout_inputs=READOUT_INPUTS, seed=seed, device="cpu",
     )
     return model
 
@@ -100,6 +101,7 @@ def main():
             "task": "santafe_laser",
             "n_reservoir": N_RESERVOIR,
             "iso_iterations": ISO_ITERATIONS,
+            "readout_inputs": READOUT_INPUTS,
             "warmup": WARMUP,
             "seeds": SEEDS,
             "note": "hyperparameters fixed from experiment_59/60, only reservoir seed varies",
