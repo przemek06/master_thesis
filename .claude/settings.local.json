@@ -24,7 +24,9 @@
       "WebFetch(domain:reservoirpy.readthedocs.io)",
       "Bash(python *)",
       "Bash(py -0p)",
-      "Bash(./venv/Scripts/python.exe *)"
+      "Bash(./venv/Scripts/python.exe *)",
+      "Bash(awk 'NR==1{print \"cols:\", NF} END{print \"rows\\(incl header\\):\", NR}' FS=',' ECL.csv)",
+      "Bash(awk 'NR==1{print \"cols:\", NF} END{print \"rows\\(incl header\\):\", NR}' FS=',' WTH.csv)"
     ]
   }
 }
