@@ -17,6 +17,7 @@ optuna.logging.set_verbosity(optuna.logging.WARNING)
 WARMUP = 100
 N_OPTUNA_TRIALS = 100
 N_RESERVOIR = 400
+READOUT_INPUTS = True
 SEED = 0
 PLOT_START = 0
 PLOT_SHOW = 400
@@ -43,6 +44,7 @@ def build(trial):
         leaky_rate=trial.suggest_float("leaky_rate", 0.01, 1.0, log=True),
         ridge=trial.suggest_float("ridge", 1e-9, 1e-1, log=True),
         noise=trial.suggest_float("noise", 1e-6, 1e-2, log=True),
+        readout_inputs=READOUT_INPUTS,
         seed=SEED,
         device="cpu",
     )
@@ -72,6 +74,7 @@ def main():
             "task": "santafe_laser",
             "n_optuna_trials": N_OPTUNA_TRIALS,
             "n_reservoir": N_RESERVOIR,
+            "readout_inputs": READOUT_INPUTS,
             "warmup": WARMUP,
             "seed": SEED,
         },

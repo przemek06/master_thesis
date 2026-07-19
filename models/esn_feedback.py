@@ -89,8 +89,12 @@ class ESNFeedback:
                 fb = Y_t[:, t, :]
 
             X = states[warmup:].reshape(-1, self.n_reservoir)
+            if self.readout_inputs:
+                U_feat = U[:, warmup:, :].permute(1, 0, 2).reshape(-1, U.shape[2])
+                ones = torch.ones(X.shape[0], 1, device=self.device)
+                X = torch.cat([X, U_feat, ones], dim=1)
             Y_flat = Y_t[:, warmup:, :].permute(1, 0, 2).reshape(-1, self.n_outputs)
-            A = X.T @ X + self.ridge * torch.eye(self.n_reservoir, device=self.device)
+            A = X.T @ X + self.ridge * torch.eye(X.shape[1], device=self.device)
             self.W_out = torch.linalg.solve(A, X.T @ Y_flat).T
         return self
 

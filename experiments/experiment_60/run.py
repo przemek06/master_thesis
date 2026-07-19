@@ -20,6 +20,7 @@ WARMUP = 100
 N_OPTUNA_TRIALS = 100
 N_RESERVOIR = 400
 ISO_ITERATIONS = 50
+READOUT_INPUTS = True
 SEED = 0
 PLOT_START = 0
 PLOT_SHOW = 400
@@ -58,6 +59,7 @@ def build(params, W):
         feedback_scaling=0.0,
         W=W,
         bias=np.array([0.2]),
+        readout_inputs=READOUT_INPUTS,
         seed=SEED,
         device="cpu",
     )
@@ -101,6 +103,7 @@ def main():
             "n_optuna_trials": N_OPTUNA_TRIALS,
             "n_reservoir": N_RESERVOIR,
             "iso_iterations": ISO_ITERATIONS,
+            "readout_inputs": READOUT_INPUTS,
             "warmup": WARMUP,
             "seed": SEED,
         },

@@ -22,6 +22,7 @@ N_OPTUNA_TRIALS = 100
 N_RESERVOIR = 400
 N_INPUTS = 1
 N_OUTPUTS = 1
+READOUT_INPUTS = True
 SEED = 0
 OPTUNA_SEED = 0
 PLOT_START = 50
@@ -103,6 +104,7 @@ def run_one(run_idx):
             W=W,
             W_fb=W_fb_fixed,
             bias=np.array([0.2]),
+            readout_inputs=READOUT_INPUTS,
             seed=SEED,
             device="cpu",
         )
@@ -172,6 +174,7 @@ def main():
             "n_test": N_TEST,
             "n_optuna_trials": N_OPTUNA_TRIALS,
             "n_reservoir": N_RESERVOIR,
+            "readout_inputs": READOUT_INPUTS,
             "warmup": WARMUP,
             "seed": SEED,
             "optuna_seed": OPTUNA_SEED,

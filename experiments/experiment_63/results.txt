@@ -1,0 +1,5 @@
+=== ESNCustomizable (Ginibre) | ett ETTh1 horizon=24 ===
+Val NMSE:         0.593041
+Test NMSE:        1.074542
+Persistence NMSE: 0.457116
+Best params: {'r_min': 0.9154796224759778, 'r_max': 0.947888244405517, 'alpha': 7.9380778770183795, 'sparsity': 0.9476005427777614, 'input_scaling': 2.8834183493602685, 'leaky_rate': 0.70989362574059, 'ridge': 3.7007390737761386e-09, 'noise': 2.231090560744303e-06}
