@@ -124,6 +124,67 @@ def generate_isospectral_sparse_matrix(eigenvalue_fn, n, sparsity, iterations=20
     return W
 
 
+def _stiefel_optimize_banded(Lambda, n, sparsity, iterations, seed, reg_weight, lo, hi):
+    import torch
+    import pymanopt
+    from pymanopt.manifolds import Stiefel
+    from pymanopt.optimizers import ConjugateGradient
+
+    rng = np.random.default_rng(seed)
+    keep = (rng.random((n, n)) > sparsity).astype(np.float64)
+    keep_t = torch.tensor(keep, dtype=torch.float64)
+    zero_t = torch.tensor(1 - keep, dtype=torch.float64)
+    Lambda_t = torch.tensor(Lambda, dtype=torch.complex128)
+
+    manifold = Stiefel(n, n)
+
+    @pymanopt.function.pytorch(manifold)
+    def cost(Q):
+        Q_c = Q.to(torch.complex128)
+        X = Q_c @ Lambda_t @ Q_c.conj().T
+        absX = torch.abs(X)
+        sparsity_term = torch.sum((absX * zero_t) ** 2)
+        over = torch.relu(absX - hi)
+        under = torch.relu(lo - absX)
+        band_term = torch.sum((over ** 2 + under ** 2) * keep_t)
+        return sparsity_term + reg_weight * band_term
+
+    problem = pymanopt.Problem(manifold, cost)
+    optimizer = ConjugateGradient(max_iterations=iterations, verbosity=0)
+    result = optimizer.run(problem)
+    return result.point, keep
+
+
+def generate_isospectral_sparse_matrix_regularized(eigenvalue_fn, n, sparsity, iterations=200, threshold=0.01, seed=None, reg_weight=1.0, lo=None, hi=None, lo_scale=0.4, hi_scale=1.8):
+    eigs = eigenvalue_fn(n)
+    Lambda = np.diag(eigs)
+    n_keep = max(1, int(round((1 - sparsity) * n * n)))
+    rms = np.sqrt(np.sum(np.abs(eigs) ** 2) / n_keep)
+    if lo is None:
+        lo = max(lo_scale * rms, threshold)
+    if hi is None:
+        hi = hi_scale * rms
+    Q, _ = _stiefel_optimize_banded(Lambda, n, sparsity, iterations, seed, reg_weight, lo, hi)
+    W = Q.astype(complex) @ Lambda @ Q.astype(complex).conj().T
+    W[np.abs(W) < threshold] = 0
+    return W
+
+
+def generate_isospectral_sparse_matrix_masked(eigenvalue_fn, n, sparsity, iterations=200, threshold=0.01, seed=None, reg_weight=1.0, lo=None, hi=None, lo_scale=0.4, hi_scale=1.8):
+    eigs = eigenvalue_fn(n)
+    Lambda = np.diag(eigs)
+    n_keep = max(1, int(round((1 - sparsity) * n * n)))
+    rms = np.sqrt(np.sum(np.abs(eigs) ** 2) / n_keep)
+    if lo is None:
+        lo = max(lo_scale * rms, threshold)
+    if hi is None:
+        hi = hi_scale * rms
+    Q, keep = _stiefel_optimize_banded(Lambda, n, sparsity, iterations, seed, reg_weight, lo, hi)
+    W = Q.astype(complex) @ Lambda @ Q.astype(complex).conj().T
+    W = W * keep
+    return W
+
+
 def generate_isospectral_sparse_orthogonal_matrix(eigenvalue_fn, n, sparsity, iterations=200, threshold=0.01, seed=None, n_samples=100, diag_penalty=0.25):
     import torch
     import pymanopt
