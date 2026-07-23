@@ -1,0 +1,26 @@
+{
+  "config": {
+    "model": "ESNFeedback (output feedback)",
+    "task": "ett",
+    "file": "ETTh1",
+    "horizon": 24,
+    "lag": 24,
+    "readout_inputs": true,
+    "n_optuna_trials": 100,
+    "n_reservoir": 400,
+    "warmup": 100,
+    "seed": 0
+  },
+  "val_nmse": 0.4176698923110962,
+  "test_nmse": 0.8389828205108643,
+  "persistence_test_nmse": 0.4571158289909363,
+  "best_params": {
+    "spectral_radius": 1.4424178444140918,
+    "sparsity": 0.9455549059710526,
+    "input_scaling": 0.17130984103615976,
+    "leaky_rate": 0.88009255299017,
+    "ridge": 8.236216517737313e-08,
+    "noise": 3.9312583043474515e-06,
+    "feedback_scaling": 0.00031149863055518744
+  }
+}

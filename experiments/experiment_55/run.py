@@ -15,7 +15,7 @@ from distribution import sample_eigenvalues_ginibre
 
 HERE = os.path.dirname(__file__)
 WARMUP = 200
-N_RUNS = 1
+N_RUNS = 10
 N_TRAIN = 10
 N_VAL = 10
 N_TEST = 10

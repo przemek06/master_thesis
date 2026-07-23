@@ -1,5 +1,5 @@
 === ESNCustomizable (Ginibre) | santafe_laser ===
-Val NMSE:         0.014458
-Test NMSE:        0.009662
+Val NMSE:         0.019886
+Test NMSE:        0.017195
 Persistence NMSE: 0.921817
-Best params: {'r_min': 0.3621649087207689, 'r_max': 0.7166195506098383, 'alpha': 3.665571249290647, 'sparsity': 0.9678642469768108, 'input_scaling': 2.7711205262090233, 'leaky_rate': 0.9088047789307642, 'ridge': 0.07187573730706226, 'noise': 6.858528765369288e-05}
+Best params: {'r_min': 0.5432889389229903, 'r_max': 0.5902450868679924, 'alpha': 6.757130122089539, 'sparsity': 0.9825342646413353, 'input_scaling': 1.6912351852604095, 'leaky_rate': 0.7408352712985005, 'ridge': 0.09320506344928257, 'noise': 0.00017447889030484793}

@@ -1,0 +1,5 @@
+=== ESNFeedback | jena horizon=24 ===
+Val NMSE:         0.103469
+Test NMSE:        0.074207
+Persistence NMSE: 0.153688
+Best params: {'spectral_radius': 1.0940349695926508, 'sparsity': 0.9563745161203121, 'input_scaling': 2.3175362041376646, 'leaky_rate': 0.04121776065896119, 'ridge': 0.004946924391273037, 'noise': 1.9964593611903255e-06, 'feedback_scaling': 0.020197552837117477}

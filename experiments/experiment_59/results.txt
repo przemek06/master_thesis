@@ -1,5 +1,5 @@
 === ESN | santafe_laser ===
-Val NMSE:         0.016285
-Test NMSE:        0.026099
+Val NMSE:         0.008498
+Test NMSE:        0.011034
 Persistence NMSE: 0.921817
-Best params: {'spectral_radius': 0.9308428810509465, 'sparsity': 0.9195937170318695, 'input_scaling': 3.6763457969545414, 'leaky_rate': 0.9009901048698191, 'ridge': 5.818994298218639e-08, 'noise': 0.00708698140469472}
+Best params: {'spectral_radius': 1.2426121241288777, 'sparsity': 0.9704118483773044, 'input_scaling': 1.2774779850318851, 'leaky_rate': 0.6764207188092003, 'ridge': 2.241948595199261e-05, 'noise': 0.007734999064653073}

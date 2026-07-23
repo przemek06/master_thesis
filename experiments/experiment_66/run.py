@@ -17,8 +17,8 @@ optuna.logging.set_verbosity(optuna.logging.WARNING)
 WARMUP = 100
 N_OPTUNA_TRIALS = 100
 N_RESERVOIR = 400
-HORIZON = 24
-LAG = 24
+HORIZON = 12
+LAG = 12
 N_INPUTS = 10 + LAG
 N_OUTPUTS = 1
 READOUT_INPUTS = True

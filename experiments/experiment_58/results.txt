@@ -1,0 +1,47 @@
+=== Summary ===
+ESNCustomizable test mean of means: 0.2165 +/- 0.2357
+ESNCustomizable test median of medians: 0.0902
+Persistence     test mean of means: 0.1351
+Beats persistence: False
+
+=== Per-run results ===
+
+Run 0
+  val mean: 0.1568, test mean: 0.2631, test median: 0.0862, persistence mean: 0.1365
+  best params: {'r_min': 0.6418396593829999, 'r_max': 0.9904015143260283, 'sparsity': 0.9583782570698122, 'alpha': 6.026624317717875, 'leaky_rate': 0.15634246562029075, 'ridge': 0.018356194635105957, 'noise': 3.1164587349573668e-06, 'input_scaling': 0.43805968792365235}
+
+Run 1
+  val mean: 0.1725, test mean: 0.9123, test median: 0.0957, persistence mean: 0.1272
+  best params: {'r_min': 0.9154796224759778, 'r_max': 0.947888244405517, 'sparsity': 0.9712552534274398, 'alpha': 5.336059705553755, 'leaky_rate': 0.1368009527972692, 'ridge': 0.04246031301768212, 'noise': 1.92373050965465e-06, 'input_scaling': 0.5269335685375495}
+
+Run 2
+  val mean: 0.0903, test mean: 0.1225, test median: 0.0883, persistence mean: 0.1213
+  best params: {'r_min': 0.45192151408230075, 'r_max': 0.8712852896229576, 'sparsity': 0.9764198277415169, 'alpha': 5.503440784075139, 'leaky_rate': 0.23467673793925545, 'ridge': 0.038247514374094335, 'noise': 1.0270094532810419e-06, 'input_scaling': 0.337391338235928}
+
+Run 3
+  val mean: 0.0812, test mean: 0.1192, test median: 0.0841, persistence mean: 0.1368
+  best params: {'r_min': 0.2083754675325747, 'r_max': 0.9733218418319064, 'sparsity': 0.9253559808101042, 'alpha': 1.3242159571377423, 'leaky_rate': 0.4742636920654431, 'ridge': 0.07025652940007335, 'noise': 3.280490268131678e-05, 'input_scaling': 0.16711276708688352}
+
+Run 4
+  val mean: 0.0885, test mean: 0.1250, test median: 0.0964, persistence mean: 0.1367
+  best params: {'r_min': 0.19742981852176203, 'r_max': 0.27079750977564293, 'sparsity': 0.9782146087458192, 'alpha': 4.095172570621809, 'leaky_rate': 0.05733471712054546, 'ridge': 0.0014139095274513425, 'noise': 3.861010695496239e-05, 'input_scaling': 2.3483100806679005}
+
+Run 5
+  val mean: 0.0888, test mean: 0.1281, test median: 0.0904, persistence mean: 0.1375
+  best params: {'r_min': 0.9183466960698082, 'r_max': 0.9516482805013207, 'sparsity': 0.9593121652211117, 'alpha': 3.812240983587766, 'leaky_rate': 0.4630270522212608, 'ridge': 0.03828047309944821, 'noise': 1.1799498815838339e-06, 'input_scaling': 0.10348016980579136}
+
+Run 6
+  val mean: 0.1130, test mean: 0.1194, test median: 0.0911, persistence mean: 0.1346
+  best params: {'r_min': 0.6806955140531172, 'r_max': 0.7079083885178983, 'sparsity': 0.9114917412765908, 'alpha': 8.551805664817634, 'leaky_rate': 0.12001420284766563, 'ridge': 0.09598576966924481, 'noise': 2.00481050069404e-06, 'input_scaling': 0.10570046388529457}
+
+Run 7
+  val mean: 0.0989, test mean: 0.1137, test median: 0.0909, persistence mean: 0.1294
+  best params: {'r_min': 0.4494821924435079, 'r_max': 0.5067971005568829, 'sparsity': 0.9346814823688295, 'alpha': 3.7453064117256933, 'leaky_rate': 0.07480875583514068, 'ridge': 0.030569670220702377, 'noise': 0.0001611602496057838, 'input_scaling': 0.24356791581551468}
+
+Run 8
+  val mean: 0.0900, test mean: 0.1316, test median: 0.0844, persistence mean: 0.1456
+  best params: {'r_min': 0.49527497086440714, 'r_max': 0.939758957701582, 'sparsity': 0.972002004300642, 'alpha': 3.855726241238301, 'leaky_rate': 0.9785292973205442, 'ridge': 0.03998634387828129, 'noise': 2.434452859260145e-06, 'input_scaling': 0.25545629218374455}
+
+Run 9
+  val mean: 0.0878, test mean: 0.1305, test median: 0.0899, persistence mean: 0.1452
+  best params: {'r_min': 0.7240451634567298, 'r_max': 0.8373803459322531, 'sparsity': 0.9090172227228772, 'alpha': 7.766714821557308, 'leaky_rate': 0.4472487890651712, 'ridge': 2.9538689377293247e-06, 'noise': 0.0012952462765012736, 'input_scaling': 0.12135164175481654}

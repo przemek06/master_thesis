@@ -1,0 +1,5 @@
+=== ESNCustomizable (Ginibre) | jena horizon=12 ===
+Val NMSE:         0.039379
+Test NMSE:        0.027835
+Persistence NMSE: 0.049268
+Best params: {'r_min': 0.52336417898882, 'r_max': 0.6560378537186426, 'alpha': 4.540685816422413, 'sparsity': 0.9416178471411957, 'input_scaling': 0.8192814739017622, 'leaky_rate': 0.45893609081798886, 'ridge': 1.6113237523824516e-06, 'noise': 0.00023685431345186247}

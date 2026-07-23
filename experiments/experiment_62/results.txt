@@ -1,0 +1,14 @@
+=== Optuna-seed variance (full retraining) | santafe_laser ===
+Optuna seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Persistence test NMSE: 0.921817
+
+esn:
+  test mean +/- std: 0.061543 +/- 0.149334
+  test median:       0.009943
+  test min / max:    0.005278 / 0.509210
+
+ginibre:
+  test mean +/- std: 0.018360 +/- 0.010885
+  test median:       0.015246
+  test min / max:    0.007143 / 0.042266
+

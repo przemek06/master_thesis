@@ -13,12 +13,12 @@ from models.esn_feedback import ESNFeedback
 
 HERE = os.path.dirname(__file__)
 WARMUP = 200
-N_RUNS = 1
+N_RUNS = 10
 N_TRAIN = 10
 N_VAL = 10
 N_TEST = 10
 N_OPTUNA_TRIALS = 100
-N_RESERVOIR = 100
+N_RESERVOIR = 1000
 N_INPUTS = 1
 N_OUTPUTS = K_MAX
 SEED = 0

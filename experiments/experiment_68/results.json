@@ -1,0 +1,25 @@
+{
+  "config": {
+    "model": "ESNFeedback (output feedback)",
+    "task": "jena",
+    "horizon": 24,
+    "lag": 24,
+    "readout_inputs": true,
+    "n_optuna_trials": 100,
+    "n_reservoir": 400,
+    "warmup": 100,
+    "seed": 0
+  },
+  "val_nmse": 0.10346874594688416,
+  "test_nmse": 0.0742068812251091,
+  "persistence_test_nmse": 0.15368780493736267,
+  "best_params": {
+    "spectral_radius": 1.0940349695926508,
+    "sparsity": 0.9563745161203121,
+    "input_scaling": 2.3175362041376646,
+    "leaky_rate": 0.04121776065896119,
+    "ridge": 0.004946924391273037,
+    "noise": 1.9964593611903255e-06,
+    "feedback_scaling": 0.020197552837117477
+  }
+}

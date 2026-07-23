@@ -1,0 +1,34 @@
+=== Summary (memory capacity, higher is better) ===
+ESNFeedback test MC mean of means: 70.40 ± 15.42 (bound: 1000)
+
+=== Per-run results ===
+
+Run 0 (data_offset=0)
+  val MC: 85.09, test MC: 85.13
+
+Run 1 (data_offset=30)
+  val MC: 80.86, test MC: 80.98
+
+Run 2 (data_offset=60)
+  val MC: 66.38, test MC: 66.25
+
+Run 3 (data_offset=90)
+  val MC: 88.97, test MC: 89.17
+
+Run 4 (data_offset=120)
+  val MC: 66.39, test MC: 66.46
+
+Run 5 (data_offset=150)
+  val MC: 66.41, test MC: 66.34
+
+Run 6 (data_offset=180)
+  val MC: 32.68, test MC: 32.63
+
+Run 7 (data_offset=210)
+  val MC: 65.28, test MC: 65.17
+
+Run 8 (data_offset=240)
+  val MC: 83.89, test MC: 84.04
+
+Run 9 (data_offset=270)
+  val MC: 67.73, test MC: 67.83

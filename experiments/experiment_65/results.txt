@@ -1,0 +1,5 @@
+=== ESNCustomizable (Ginibre) | wth horizon=12 ===
+Val NMSE:         0.105896
+Test NMSE:        0.108755
+Persistence NMSE: 0.263797
+Best params: {'r_min': 0.9488996569120475, 'r_max': 0.9551527366771555, 'alpha': 3.9937445445049753, 'sparsity': 0.9289493867685636, 'input_scaling': 0.3176603387896044, 'leaky_rate': 0.5721205212051274, 'ridge': 0.0002458960370478784, 'noise': 8.359540398514677e-05}

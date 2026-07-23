@@ -1,0 +1,27 @@
+{
+  "config": {
+    "model": "ESNCustomizable (Ginibre isospectral W, feedback_scaling=0)",
+    "task": "wth",
+    "horizon": 12,
+    "lag": 12,
+    "readout_inputs": true,
+    "n_optuna_trials": 100,
+    "n_reservoir": 400,
+    "iso_iterations": 50,
+    "warmup": 100,
+    "seed": 0
+  },
+  "val_nmse": 0.10589603334665298,
+  "test_nmse": 0.1087554469704628,
+  "persistence_test_nmse": 0.26379698514938354,
+  "best_params": {
+    "r_min": 0.9488996569120475,
+    "r_max": 0.9551527366771555,
+    "alpha": 3.9937445445049753,
+    "sparsity": 0.9289493867685636,
+    "input_scaling": 0.3176603387896044,
+    "leaky_rate": 0.5721205212051274,
+    "ridge": 0.0002458960370478784,
+    "noise": 8.359540398514677e-05
+  }
+}

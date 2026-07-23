@@ -1,0 +1,5 @@
+=== ESNFeedback | ett ETTh1 horizon=24 ===
+Val NMSE:         0.417670
+Test NMSE:        0.838983
+Persistence NMSE: 0.457116
+Best params: {'spectral_radius': 1.4424178444140918, 'sparsity': 0.9455549059710526, 'input_scaling': 0.17130984103615976, 'leaky_rate': 0.88009255299017, 'ridge': 8.236216517737313e-08, 'noise': 3.9312583043474515e-06, 'feedback_scaling': 0.00031149863055518744}
