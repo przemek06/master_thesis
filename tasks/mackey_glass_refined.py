@@ -9,25 +9,25 @@ N = 10
 DELTA = 0.1
 SUBSAMPLE = 10
 FINE_TAU = round(TAU / DELTA)
-TRANSIENT_FINE = 0
+TRANSIENT_FINE = 5000
 
 
 def _generate(coarse_length, seed, label=""):
     fine_length = coarse_length * SUBSAMPLE
-    total = FINE_TAU + TRANSIENT_FINE + fine_length
-    print(f"  Generating {label} ({fine_length} fine steps)...", flush=True)
+    total = FINE_TAU + 1 + TRANSIENT_FINE + fine_length
+    if label:
+        print(f"  Generating {label} ({fine_length} fine steps)...", flush=True)
 
     rng = np.random.default_rng(seed)
     x = np.zeros(total)
-    x[:FINE_TAU] = 0.9 + 0.1 * rng.random(FINE_TAU)
+    x[:FINE_TAU + 1] = 0.9 + 0.1 * rng.random(FINE_TAU + 1)
 
     for t in range(FINE_TAU, total - 1):
         x_d = x[t - FINE_TAU]
         x[t + 1] = x[t] + DELTA * (BETA * x_d / (1 + x_d ** N) - GAMMA * x[t])
 
-    x = x[FINE_TAU + TRANSIENT_FINE:]
+    x = x[FINE_TAU + 1 + TRANSIENT_FINE:]
     x = x[::SUBSAMPLE]
-    print(f"  Done {label}.", flush=True)
     return np.tanh(x - 1)
 
 

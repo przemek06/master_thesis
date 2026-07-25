@@ -35,6 +35,7 @@ class ESNCustomizable:
         self.W = torch.tensor(W, dtype=torch.complex64 if self._is_complex else torch.float32, device=self.device)
         self.bias = torch.tensor(bias, dtype=torch.float32, device=self.device) if bias is not None else None
         self.W_out = None
+        self.reset_state()
 
     def _flat(self, state):
         return torch.cat([state.real, state.imag]) if self._is_complex else state
@@ -114,19 +115,22 @@ class ESNCustomizable:
     def reset_state(self):
         dtype = torch.complex64 if self._is_complex else torch.float32
         self.last_state = torch.zeros(self.n_reservoir, dtype=dtype, device=self.device)
+        self.last_pred = torch.zeros(self.n_outputs, device=self.device)
 
     def predict(self, u, initial_state=None):
         with torch.no_grad():
             states, last_state = self._run(u, initial_state=initial_state)
             self.last_state = last_state
-            return (self._readout_features(states, u) @ self.W_out.T).cpu().numpy()
+            out = self._readout_features(states, u) @ self.W_out.T
+            self.last_pred = out[-1]
+            return out.cpu().numpy()
 
     def predict_autonomous(self, n_steps, initial_state=None):
         with torch.no_grad():
             state = self.last_state if initial_state is None else initial_state
 
             preds = []
-            inp = self._flat(state) @ self.W_out.T
+            inp = self.last_pred
             for _ in range(n_steps):
                 inp_with_bias = torch.cat([inp, self.bias]) if self.bias is not None else inp
                 pre = self.W_in @ inp_with_bias + self.W @ state + self.W_fb @ inp
@@ -134,7 +138,10 @@ class ESNCustomizable:
                     dtype = torch.complex64 if self._is_complex else torch.float32
                     pre = pre + self.noise * torch.randn(self.n_reservoir, dtype=dtype, device=self.device)
                 state = (1 - self.leaky_rate) * state + self.leaky_rate * torch.tanh(pre)
-                inp = self._flat(state) @ self.W_out.T
+                u_t = inp
+                inp = self._readout_step(self._flat(state), u_t)
                 preds.append(inp.cpu().numpy())
 
+            self.last_state = state
+            self.last_pred = inp
             return np.array(preds)
