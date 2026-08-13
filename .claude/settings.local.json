@@ -29,7 +29,9 @@
       "Bash(awk 'NR==1{print \"cols:\", NF} END{print \"rows\\(incl header\\):\", NR}' FS=',' WTH.csv)",
       "Bash(sort -t_ -k3 -n)",
       "Read(//c/Users/swiat/Projects/magisterka/manuscript/Thesis_Template_ENG_26/**)",
-      "Read(//c/Users/swiat/Projects/magisterka/manuscript/**)"
+      "Read(//c/Users/swiat/Projects/magisterka/manuscript/**)",
+      "Bash(mkdir -p helpers)",
+      "Bash(git mv *)"
     ]
   }
 }

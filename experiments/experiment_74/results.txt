@@ -1,0 +1,141 @@
+N=400, sparsity=0.95, iterations=50, threshold=0.01, seed=0
+
+=== Spectral fidelity (Hungarian matching target vs actual) ===
+
+[small_ring] params={'r_min': 0.25, 'r_max': 0.3, 'alpha': 1.0}, runtime=30.5s
+  mean matched distance = 0.00969 (median 0.00828, max 0.03562)
+  relative to mean |lambda| = 0.0342
+  spectral radius: target 0.3015 -> actual 0.2981
+
+[medium_ring] params={'r_min': 0.55, 'r_max': 0.6, 'alpha': 1.0}, runtime=28.4s
+  mean matched distance = 0.01130 (median 0.01022, max 0.05237)
+  relative to mean |lambda| = 0.0194
+  spectral radius: target 0.6025 -> actual 0.5950
+
+[wide_ring] params={'r_min': 0.85, 'r_max': 0.9, 'alpha': 1.0}, runtime=27.2s
+  mean matched distance = 0.01225 (median 0.01167, max 0.03516)
+  relative to mean |lambda| = 0.0139
+  spectral radius: target 0.9021 -> actual 0.8951
+
+[wide_annulus] params={'r_min': 0.3, 'r_max': 0.9, 'alpha': 1.0}, runtime=23.6s
+  mean matched distance = 0.00997 (median 0.00740, max 0.06794)
+  relative to mean |lambda| = 0.0142
+  spectral radius: target 0.9308 -> actual 0.9280
+
+[uniform_disk] params={'r_min': 0.0, 'r_max': 0.9, 'alpha': 1.0}, runtime=26.4s
+  mean matched distance = 0.01025 (median 0.00773, max 0.08963)
+  relative to mean |lambda| = 0.0170
+  spectral radius: target 0.9621 -> actual 0.9553
+
+=== Sparsity mask agreement ===
+
+[small_ring]
+  target nonzero fraction   = 0.0497
+  achieved nonzero fraction = 0.0279
+  in-mask entries kept      = 0.1427
+  off-mask entries nonzero  = 0.0219
+  off-mask energy (raw)     = 0.208408
+  off-mask energy (thresh)  = 0.189527
+
+[medium_ring]
+  target nonzero fraction   = 0.0497
+  achieved nonzero fraction = 0.0558
+  in-mask entries kept      = 0.1565
+  off-mask entries nonzero  = 0.0506
+  off-mask energy (raw)     = 0.203581
+  off-mask energy (thresh)  = 0.197157
+
+[wide_ring]
+  target nonzero fraction   = 0.0497
+  achieved nonzero fraction = 0.0848
+  in-mask entries kept      = 0.1952
+  off-mask entries nonzero  = 0.0790
+  off-mask energy (raw)     = 0.207424
+  off-mask energy (thresh)  = 0.203820
+
+[wide_annulus]
+  target nonzero fraction   = 0.0497
+  achieved nonzero fraction = 0.1268
+  in-mask entries kept      = 0.2117
+  off-mask entries nonzero  = 0.1223
+  off-mask energy (raw)     = 0.144803
+  off-mask energy (thresh)  = 0.140913
+
+[uniform_disk]
+  target nonzero fraction   = 0.0497
+  achieved nonzero fraction = 0.1330
+  in-mask entries kept      = 0.2393
+  off-mask entries nonzero  = 0.1275
+  off-mask energy (raw)     = 0.108028
+  off-mask energy (thresh)  = 0.102348
+
+=== Nonzero entry statistics ===
+
+[small_ring]
+  real: n=4463, mean=-0.0005, std=0.0593, min=-0.2888, max=0.2914, median=-0.0013, skew=0.274, kurt=11.027
+  imag: n=4463, mean=0.0007, std=0.0596, min=-0.2911, max=0.2966, median=0.0001, skew=0.015, kurt=10.562
+   abs: n=4463, mean=0.0447, std=0.0712, min=0.0100, max=0.2966, median=0.0157, skew=2.612, kurt=5.670
+
+[medium_ring]
+  real: n=8934, mean=0.0005, std=0.0871, min=-0.5861, max=0.5868, median=0.0004, skew=-0.347, kurt=24.472
+  imag: n=8934, mean=0.0006, std=0.0869, min=-0.5926, max=0.5919, median=0.0004, skew=0.109, kurt=24.317
+   abs: n=8934, mean=0.0492, std=0.1128, min=0.0100, max=0.5939, median=0.0161, skew=3.969, kurt=14.905
+
+[wide_ring]
+  real: n=13561, mean=0.0013, std=0.1073, min=-0.8844, max=0.8861, median=0.0005, skew=0.725, kurt=40.015
+  imag: n=13561, mean=-0.0016, std=0.1068, min=-0.8897, max=0.8826, median=-0.0005, skew=-0.345, kurt=39.040
+   abs: n=13561, mean=0.0507, std=0.1427, min=0.0100, max=0.8921, median=0.0165, skew=5.053, kurt=24.971
+
+[wide_annulus]
+  real: n=20285, mean=0.0010, std=0.0708, min=-0.8519, max=0.8473, median=-0.0001, skew=1.147, kurt=71.641
+  imag: n=20285, mean=-0.0009, std=0.0708, min=-0.8451, max=0.8476, median=-0.0005, skew=-1.004, kurt=70.290
+   abs: n=20285, mean=0.0377, std=0.0927, min=0.0100, max=0.8740, median=0.0179, skew=6.942, kurt=51.901
+
+[uniform_disk]
+  real: n=21285, mean=-0.0000, std=0.0618, min=-0.8332, max=0.8438, median=0.0000, skew=0.386, kurt=90.669
+  imag: n=21285, mean=-0.0007, std=0.0622, min=-0.8337, max=0.8871, median=-0.0002, skew=-0.104, kurt=89.767
+   abs: n=21285, mean=0.0327, std=0.0813, min=0.0100, max=0.9092, median=0.0162, skew=7.917, kurt=67.571
+
+=== MLE fits to real parts of nonzero entries ===
+
+[small_ring]
+   cauchy: AIC=-18643, loglik=9323, KS stat=0.0540, KS p=9.78e-12, params=[-0.0009, 0.0116]
+   normal: AIC=-12554, loglik=6279, KS stat=0.2465, KS p=2.89e-239, params=[-0.0005, 0.0593]
+
+[medium_ring]
+   cauchy: AIC=-39255, loglik=19629, KS stat=0.0488, KS p=6.5e-19, params=[0.0003, 0.0107]
+   normal: AIC=-18261, loglik=9132, KS stat=0.3058, KS p=0, params=[0.0005, 0.0871]
+
+[wide_ring]
+   cauchy: AIC=-60403, loglik=30204, KS stat=0.0563, KS p=7.97e-38, params=[0.0006, 0.0109]
+   normal: AIC=-22049, loglik=11027, KS stat=0.3355, KS p=0, params=[0.0013, 0.1073]
+
+[wide_annulus]
+   cauchy: AIC=-91962, loglik=45983, KS stat=0.0643, KS p=2.93e-73, params=[-0.0002, 0.0115]
+   normal: AIC=-49871, loglik=24938, KS stat=0.2948, KS p=0, params=[0.001, 0.0708]
+
+[uniform_disk]
+   cauchy: AIC=-100983, loglik=50493, KS stat=0.0694, KS p=1.42e-89, params=[-0.0001, 0.0106]
+   normal: AIC=-58125, loglik=29065, KS stat=0.2873, KS p=0, params=[-0.0, 0.0618]
+
+=== MLE fits to imag parts of nonzero entries ===
+
+[small_ring]
+   cauchy: AIC=-18866, loglik=9435, KS stat=0.0487, KS p=1.22e-09, params=[-0.0001, 0.0109]
+   normal: AIC=-12509, loglik=6256, KS stat=0.2509, KS p=5.41e-248, params=[0.0007, 0.0596]
+
+[medium_ring]
+   cauchy: AIC=-38766, loglik=19385, KS stat=0.0591, KS p=1.43e-27, params=[0.0004, 0.0111]
+   normal: AIC=-18285, loglik=9145, KS stat=0.3113, KS p=0, params=[0.0006, 0.0869]
+
+[wide_ring]
+   cauchy: AIC=-60223, loglik=30113, KS stat=0.0536, KS p=2.92e-34, params=[-0.0004, 0.0109]
+   normal: AIC=-22175, loglik=11089, KS stat=0.3319, KS p=0, params=[-0.0016, 0.1068]
+
+[wide_annulus]
+   cauchy: AIC=-92668, loglik=46336, KS stat=0.0640, KS p=9.16e-73, params=[-0.0005, 0.0111]
+   normal: AIC=-49850, loglik=24927, KS stat=0.2955, KS p=0, params=[-0.0009, 0.0708]
+
+[uniform_disk]
+   cauchy: AIC=-101526, loglik=50765, KS stat=0.0677, KS p=2.64e-85, params=[-0.0001, 0.0103]
+   normal: AIC=-57838, loglik=28921, KS stat=0.2915, KS p=0, params=[-0.0007, 0.0622]

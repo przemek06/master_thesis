@@ -28,8 +28,9 @@ def _lag_window(a, window):
     )
 
 
-def load(horizon=24, lag=24):
+def load(horizon=24, lag=24, subsample=1):
     covs, ot = _raw()
+    covs, ot = covs[::subsample], ot[::subsample]
     n = len(covs)
     train_end, val_end, test_end = int(TRAIN_F * n), int((TRAIN_F + VAL_F) * n), n
 
