@@ -1,0 +1,32 @@
+=== Memory capacity, matched reservoir size (higher is better) ===
+Reservoir units: 100 for both models
+Readout width (ginibre): 200 -> MC bound 200
+Readout width (feedback): 100 -> MC bound 100
+K_MAX: 200
+
+ginibre:
+  test MC mean +/- std: 111.38 +/- 14.15
+  test MC median:       103.04
+  test MC min / max:    93.41 / 130.08
+  fraction of bound:    0.557
+
+feedback:
+  test MC mean +/- std: 28.31 +/- 4.43
+  test MC median:       27.47
+  test MC min / max:    21.13 / 34.83
+  fraction of bound:    0.283
+
+Paired t-test: t=17.880, p=0.0000 (significant at alpha=0.05)
+Higher test MC: ginibre
+
+=== Per-run test MC ===
+  run 0 (offset 0): ginibre 101.73, feedback 27.07
+  run 1 (offset 30): ginibre 100.19, feedback 26.73
+  run 2 (offset 60): ginibre 93.41, feedback 27.87
+  run 3 (offset 90): ginibre 100.03, feedback 25.62
+  run 4 (offset 120): ginibre 127.05, feedback 32.77
+  run 5 (offset 150): ginibre 104.35, feedback 23.07
+  run 6 (offset 180): ginibre 129.40, feedback 29.17
+  run 7 (offset 210): ginibre 130.08, feedback 34.83
+  run 8 (offset 240): ginibre 100.48, feedback 34.83
+  run 9 (offset 270): ginibre 127.05, feedback 21.13

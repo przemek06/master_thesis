@@ -1,0 +1,3 @@
+single instance NARMA-30 test NMSE (mean over 10 test series)
+feedback: 2.5211
+customizable: 1762.7769

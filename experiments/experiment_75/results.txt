@@ -1,0 +1,18 @@
+=== Optuna-seed variance (full retraining) | jena hourly ===
+Sampling: every 6 rows = 60 minutes
+Horizon: 24 steps = 24 hours ahead
+Optuna seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Persistence test NMSE: 0.174433
+
+ginibre:
+  test mean +/- std: 0.146983 +/- 0.004235
+  test median:       0.149822
+  test min / max:    0.139974 / 0.151225
+
+feedback:
+  test mean +/- std: 0.152804 +/- 0.006624
+  test median:       0.156794
+  test min / max:    0.142059 / 0.157959
+
+Welch t-test: t=-2.221, p=0.0418 (significant at alpha=0.05)
+Lower test NMSE: ginibre

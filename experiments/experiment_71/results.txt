@@ -1,0 +1,53 @@
+=== Mackey-Glass, 10 runs with per-run data ===
+ginibre:
+  steps until divergence: 179.8 +/- 148.4 (1.06 Lyapunov times)
+  horizon-84 NMSE:    nan +/- nan
+feedback:
+  steps until divergence: 441.0 +/- 865.3 (2.59 Lyapunov times)
+  horizon-84 NMSE:    nan +/- nan
+
+Paired t-test (steps):        t=-0.918, p=0.3823
+Paired t-test (horizon NMSE): t=nan, p=nan
+Censored test rollouts (hit 3000): 20
+
+=== Per-run results ===
+
+Run 0
+  ginibre   val steps:     0.0, test steps:     0.0, test horizon NMSE: 1384.38166
+  feedback  val steps:   392.6, test steps:   428.1, test horizon NMSE: 0.00088
+
+Run 1
+  ginibre   val steps:   245.9, test steps:   266.1, test horizon NMSE: 0.00532
+  feedback  val steps:     0.0, test steps:     0.0, test horizon NMSE: 1361.24018
+
+Run 2
+  ginibre   val steps:   347.8, test steps:   307.3, test horizon NMSE: 0.00156
+  feedback  val steps:   331.6, test steps:   281.3, test horizon NMSE: 0.00322
+
+Run 3
+  ginibre   val steps:     0.0, test steps:     0.0, test horizon NMSE: 1137.24279
+  feedback  val steps:     6.9, test steps:     7.2, test horizon NMSE: 0.56671
+
+Run 4
+  ginibre   val steps:   353.8, test steps:   359.9, test horizon NMSE: 0.00114
+  feedback  val steps:   364.9, test steps:   303.5, test horizon NMSE: 0.00128
+
+Run 5
+  ginibre   val steps:   240.8, test steps:   235.8, test horizon NMSE: 0.00180
+  feedback  val steps:   196.7, test steps:   174.0, test horizon NMSE: 0.00642
+
+Run 6
+  ginibre   val steps:     0.0, test steps:     0.0, test horizon NMSE: nan
+  feedback  val steps:   250.0, test steps:   215.8, test horizon NMSE: 0.00586
+
+Run 7
+  ginibre   val steps:    18.9, test steps:    15.8, test horizon NMSE: 235.95515
+  feedback  val steps:     0.0, test steps:     0.0, test horizon NMSE: nan
+
+Run 8
+  ginibre   val steps:   299.1, test steps:   257.1, test horizon NMSE: 0.00415
+  feedback  val steps:  3000.0, test steps:  3000.0, test horizon NMSE: nan
+
+Run 9
+  ginibre   val steps:   334.2, test steps:   356.4, test horizon NMSE: 0.00389
+  feedback  val steps:     0.0, test steps:     0.0, test horizon NMSE: 929.76017

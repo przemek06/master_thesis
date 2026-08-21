@@ -1,0 +1,17 @@
+=== Single run per model | jena hourly ===
+Sampling: every 6 rows = 60 minutes
+Horizon: 24 steps = 24 hours ahead
+Lag: 12 steps
+Optuna seed: 0, trials: 100
+Persistence test NMSE: 0.174433
+
+ginibre:
+  val NMSE:  0.222262
+  test NMSE: 0.151225
+  best params: {'r_min': 0.7718954925272838, 'r_max': 0.8818229473010611, 'alpha': 8.42583602129216, 'sparsity': 0.9038671685265424, 'input_scaling': 2.749181704068722, 'leaky_rate': 0.7896058310273006, 'ridge': 0.0386035048189952, 'noise': 0.0017906993279785935}
+
+feedback:
+  val NMSE:  0.217719
+  test NMSE: 0.157253
+  best params: {'spectral_radius': 1.05282457963175, 'sparsity': 0.9156835391411672, 'input_scaling': 3.271452640271659, 'leaky_rate': 0.10595710889869098, 'ridge': 0.0002616062663974815, 'noise': 0.0006071990753559482}
+
