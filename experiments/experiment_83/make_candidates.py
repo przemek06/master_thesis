@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 HERE = os.path.dirname(__file__)
 OUT = os.path.join(HERE, "trajectory_candidates")
-N_EXAMPLES = 30
+N_EXAMPLES = 100
 
 DPI = 150
 WIDE = (7, 5)
