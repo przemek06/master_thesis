@@ -1,0 +1,48 @@
+=== Summary ===
+esn feedback     test mean of means: 0.4244 +/- 0.0413
+esn customizable test mean of means: 0.2365 +/- 0.1079
+
+Paired t-test: t=5.679, p=0.0003 (significant at alpha=0.05)
+Better model: esn_customizable
+
+=== Per-run results ===
+
+Run 0 (data_offset=0)
+  esn feedback     val mean: 0.4605, test mean: 0.4616
+  esn customizable val mean: 0.4191, test mean: 0.4232
+
+Run 1 (data_offset=30)
+  esn feedback     val mean: 0.4035, test mean: 0.3983
+  esn customizable val mean: 0.1739, test mean: 0.1775
+
+Run 2 (data_offset=60)
+  esn feedback     val mean: 0.3229, test mean: 0.3316
+  esn customizable val mean: 0.1494, test mean: 0.1536
+
+Run 3 (data_offset=90)
+  esn feedback     val mean: 0.4596, test mean: 0.4525
+  esn customizable val mean: 0.1654, test mean: 0.1641
+
+Run 4 (data_offset=120)
+  esn feedback     val mean: 0.3994, test mean: 0.4025
+  esn customizable val mean: 0.2518, test mean: 0.1732
+
+Run 5 (data_offset=150)
+  esn feedback     val mean: 0.4477, test mean: 0.4517
+  esn customizable val mean: 0.1736, test mean: 0.1776
+
+Run 6 (data_offset=180)
+  esn feedback     val mean: 0.3988, test mean: 0.4016
+  esn customizable val mean: 0.2804, test mean: 0.3250
+
+Run 7 (data_offset=210)
+  esn feedback     val mean: 0.4827, test mean: 0.4730
+  esn customizable val mean: 0.1808, test mean: 0.1784
+
+Run 8 (data_offset=240)
+  esn feedback     val mean: 0.4711, test mean: 0.4603
+  esn customizable val mean: 0.4500, test mean: 0.4377
+
+Run 9 (data_offset=270)
+  esn feedback     val mean: 0.4149, test mean: 0.4109
+  esn customizable val mean: 0.1554, test mean: 0.1541

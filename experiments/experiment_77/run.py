@@ -39,6 +39,7 @@ COLORS = {"ginibre": PRIMARY, "feedback": SECONDARY}
 BAR_WIDTH = 0.4
 POINT_SIZE = 8
 POINT_ALPHA = 0.6
+PLOT_DELAY = 5
 
 
 def fixed_weights():
@@ -145,6 +146,11 @@ def run_one(task):
     test_totals, test_curves = eval_mc(model, test_list)
     curve = np.mean(test_curves, axis=0)
 
+    u0, y0 = test_list[0]
+    pred0 = model.predict(u0)[WARMUP:]
+    target0 = y0[WARMUP:]
+    mc_at_delay = float(np.corrcoef(pred0[:, PLOT_DELAY], target0[:, PLOT_DELAY])[0, 1] ** 2)
+
     print(f"  {model_name} run {run_idx}: val MC {np.mean(val_totals):.2f} test MC {np.mean(test_totals):.2f}", flush=True)
     return {
         "model": model_name,
@@ -156,7 +162,10 @@ def run_one(task):
         "readout_width": int(model._state_size if hasattr(model, "_state_size") else N_RESERVOIR),
         "best_params": {k: float(v) for k, v in study.best_params.items()},
         "curve": curve,
-        "W": holder["W"],
+        "W": model.W.detach().cpu().numpy(),
+        "pred_col": pred0[:, PLOT_DELAY],
+        "target_col": target0[:, PLOT_DELAY],
+        "mc_at_delay": mc_at_delay,
     }
 
 
@@ -187,10 +196,16 @@ def main():
     t_stat, p_value = sps.ttest_rel(g, fb)
     better = "ginibre" if g.mean() > fb.mean() else "feedback"
 
+    W_stacks = {m: np.stack([o["W"] for o in by_model[m]]) for m in MODELS}
+    pred_cols = {m: np.stack([o["pred_col"] for o in by_model[m]]) for m in MODELS}
+    target_cols = {m: np.stack([o["target_col"] for o in by_model[m]]) for m in MODELS}
+
     arrays = {"run_means_" + m: np.array(test_mc[m]) for m in MODELS}
     for m in MODELS:
         arrays[f"forgetting_curves_{m}"] = curves[m]
-    arrays["W_ginibre"] = np.stack([o["W"] for o in by_model["ginibre"]])
+        arrays[f"W_{m}"] = W_stacks[m]
+        arrays[f"pred_col_{m}"] = pred_cols[m]
+        arrays[f"target_col_{m}"] = target_cols[m]
     np.savez_compressed(os.path.join(HERE, "arrays.npz"), **arrays)
 
     results = {
@@ -222,7 +237,7 @@ def main():
             "significant": bool(p_value < 0.05),
             "better_model": better,
         },
-        "runs": [{k: v for k, v in o.items() if k not in ("curve", "W")} for o in outputs],
+        "runs": [{k: v for k, v in o.items() if k not in ("curve", "W", "pred_col", "target_col")} for o in outputs],
     }
     with open(os.path.join(HERE, "results.json"), "w") as f:
         json.dump(results, f, indent=2)
@@ -294,18 +309,38 @@ def main():
     fig.savefig(os.path.join(HERE, "mc_distribution.png"), dpi=DPI)
     plt.close(fig)
 
+    for m in MODELS:
+        median_run = int(np.argsort(test_mc[m])[N_RUNS // 2])
+        target = target_cols[m][median_run]
+        pred = pred_cols[m][median_run]
+        mc_at = by_model[m][median_run]["mc_at_delay"]
+        fig, ax = plt.subplots(figsize=SQUARE)
+        lo = min(target.min(), pred.min())
+        hi = max(target.max(), pred.max())
+        ax.plot([lo, hi], [lo, hi], color=REFERENCE, linewidth=1)
+        ax.scatter(target, pred, s=POINT_SIZE, alpha=POINT_ALPHA, color=COLORS[m],
+                   label=f"delay {PLOT_DELAY + 1}, squared correlation {mc_at:.3f}")
+        ax.set_aspect("equal")
+        ax.set_xlabel("target")
+        ax.set_ylabel("prediction")
+        ax.legend()
+        fig.tight_layout()
+        fig.savefig(os.path.join(HERE, f"target_vs_prediction_{m}.png"), dpi=DPI)
+        plt.close(fig)
+
     theta = np.linspace(0, 2 * np.pi, 500)
-    median_run = int(np.argsort(g)[N_RUNS // 2])
-    eigs = np.linalg.eigvals(by_model["ginibre"][median_run]["W"])
-    fig, ax = plt.subplots(figsize=SQUARE)
-    ax.plot(np.cos(theta), np.sin(theta), color=REFERENCE, linewidth=1)
-    ax.scatter(eigs.real, eigs.imag, s=POINT_SIZE, alpha=POINT_ALPHA, color=PRIMARY)
-    ax.set_aspect("equal")
-    ax.set_xlabel("real")
-    ax.set_ylabel("imaginary")
-    fig.tight_layout()
-    fig.savefig(os.path.join(HERE, "eigenvalues_ginibre.png"), dpi=DPI)
-    plt.close(fig)
+    for m in MODELS:
+        for r in range(N_RUNS):
+            eigs = np.linalg.eigvals(W_stacks[m][r])
+            fig, ax = plt.subplots(figsize=SQUARE)
+            ax.plot(np.cos(theta), np.sin(theta), color=REFERENCE, linewidth=1)
+            ax.scatter(eigs.real, eigs.imag, s=POINT_SIZE, alpha=POINT_ALPHA, color=COLORS[m])
+            ax.set_aspect("equal")
+            ax.set_xlabel("real")
+            ax.set_ylabel("imaginary")
+            fig.tight_layout()
+            fig.savefig(os.path.join(HERE, f"eigenvalues_{m}_run{r}.png"), dpi=DPI)
+            plt.close(fig)
 
     print("Done.", flush=True)
 

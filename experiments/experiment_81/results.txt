@@ -1,0 +1,88 @@
+=== Summary ===
+esn feedback     test mean of means: 360.8 +/- 89.9
+esn customizable test mean of means: 387.2 +/- 65.8
+
+Paired t-test: t=-1.018, p=0.3215 (not significant at alpha=0.05)
+Better model: esn_customizable
+
+=== Per-run results ===
+
+Run 0 (optuna_seed=0)
+  esn feedback     val mean: 447.8, test mean: 440.1
+  esn customizable val mean: 564.8, test mean: 490.9
+
+Run 1 (optuna_seed=1)
+  esn feedback     val mean: 388.0, test mean: 306.4
+  esn customizable val mean: 450.0, test mean: 423.1
+
+Run 2 (optuna_seed=2)
+  esn feedback     val mean: 313.2, test mean: 304.2
+  esn customizable val mean: 435.2, test mean: 477.5
+
+Run 3 (optuna_seed=3)
+  esn feedback     val mean: 286.4, test mean: 370.6
+  esn customizable val mean: 494.0, test mean: 350.4
+
+Run 4 (optuna_seed=4)
+  esn feedback     val mean: 332.2, test mean: 305.1
+  esn customizable val mean: 310.4, test mean: 295.1
+
+Run 5 (optuna_seed=5)
+  esn feedback     val mean: 535.8, test mean: 494.2
+  esn customizable val mean: 469.4, test mean: 375.3
+
+Run 6 (optuna_seed=6)
+  esn feedback     val mean: 473.2, test mean: 320.1
+  esn customizable val mean: 497.8, test mean: 299.4
+
+Run 7 (optuna_seed=7)
+  esn feedback     val mean: 540.2, test mean: 522.4
+  esn customizable val mean: 415.2, test mean: 451.0
+
+Run 8 (optuna_seed=8)
+  esn feedback     val mean: 534.2, test mean: 286.6
+  esn customizable val mean: 491.4, test mean: 355.1
+
+Run 9 (optuna_seed=9)
+  esn feedback     val mean: 309.4, test mean: 387.5
+  esn customizable val mean: 387.8, test mean: 358.8
+
+Run 10 (optuna_seed=10)
+  esn feedback     val mean: 370.8, test mean: 365.6
+  esn customizable val mean: 249.4, test mean: 312.0
+
+Run 11 (optuna_seed=11)
+  esn feedback     val mean: 427.8, test mean: 421.1
+  esn customizable val mean: 397.4, test mean: 383.6
+
+Run 12 (optuna_seed=12)
+  esn feedback     val mean: 586.0, test mean: 437.6
+  esn customizable val mean: 335.8, test mean: 338.8
+
+Run 13 (optuna_seed=13)
+  esn feedback     val mean: 381.0, test mean: 376.2
+  esn customizable val mean: 328.8, test mean: 350.6
+
+Run 14 (optuna_seed=14)
+  esn feedback     val mean: 346.2, test mean: 266.9
+  esn customizable val mean: 223.4, test mean: 299.7
+
+Run 15 (optuna_seed=15)
+  esn feedback     val mean: 476.8, test mean: 495.1
+  esn customizable val mean: 450.8, test mean: 443.6
+
+Run 16 (optuna_seed=16)
+  esn feedback     val mean: 318.6, test mean: 330.1
+  esn customizable val mean: 429.6, test mean: 372.9
+
+Run 17 (optuna_seed=17)
+  esn feedback     val mean: 145.8, test mean: 127.5
+  esn customizable val mean: 495.8, test mean: 529.8
+
+Run 18 (optuna_seed=18)
+  esn feedback     val mean: 356.8, test mean: 342.6
+  esn customizable val mean: 262.0, test mean: 411.6
+
+Run 19 (optuna_seed=19)
+  esn feedback     val mean: 399.0, test mean: 315.6
+  esn customizable val mean: 499.6, test mean: 425.6

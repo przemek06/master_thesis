@@ -1,0 +1,345 @@
+{
+  "config": {
+    "task": "jena",
+    "subsample": 6,
+    "sampling_interval_minutes": 60,
+    "horizon": 168,
+    "horizon_hours": 168.0,
+    "lag": 12,
+    "n_runs": 10,
+    "n_optuna_trials": 100,
+    "n_reservoir": 400,
+    "n_outputs": 168,
+    "iso_iterations": 50,
+    "readout_inputs": true,
+    "warmup": 100,
+    "reservoir_seed": 0,
+    "n_workers": 5,
+    "note": "multi-output direct forecast of the full 1..H horizon; optuna-seed variance over runs; feedback disabled for both, noise disabled at evaluation; score is mean nmse over horizons"
+  },
+  "persistence_mean_nmse": 0.5627962946891785,
+  "runs": [
+    {
+      "run_index": 0,
+      "optuna_seed": 0,
+      "feedback": {
+        "test": 0.3190905749797821,
+        "best_params": {
+          "spectral_radius": 0.9942923214078291,
+          "sparsity": 0.9136063853638712,
+          "input_scaling": 0.3880172989103955,
+          "leaky_rate": 0.31671138035951546,
+          "ridge": 0.00014981672854497615,
+          "noise": 0.00012336136915595242
+        }
+      },
+      "customizable": {
+        "test": 0.328357994556427,
+        "best_params": {
+          "r_min": 0.4907729669000499,
+          "r_max": 0.5122192254135064,
+          "alpha": 4.6650347826965,
+          "sparsity": 0.9781241220212784,
+          "input_scaling": 0.3468877823556571,
+          "leaky_rate": 0.3602476888006949,
+          "ridge": 2.5119553859980713e-09,
+          "noise": 7.073432619995538e-06
+        }
+      }
+    },
+    {
+      "run_index": 1,
+      "optuna_seed": 1,
+      "feedback": {
+        "test": 0.32540926337242126,
+        "best_params": {
+          "spectral_radius": 0.5885161604892668,
+          "sparsity": 0.9803880750066615,
+          "input_scaling": 0.5529516945178578,
+          "leaky_rate": 0.15481970032540393,
+          "ridge": 3.449133298067466e-05,
+          "noise": 0.0011047065470163495
+        }
+      },
+      "customizable": {
+        "test": 0.3213943839073181,
+        "best_params": {
+          "r_min": 0.1696903577363496,
+          "r_max": 0.4198152382482671,
+          "alpha": 7.003743928621325,
+          "sparsity": 0.9658154563562104,
+          "input_scaling": 0.4518929129902244,
+          "leaky_rate": 0.3452929655657754,
+          "ridge": 0.04852726774506931,
+          "noise": 0.00566889748452118
+        }
+      }
+    },
+    {
+      "run_index": 2,
+      "optuna_seed": 2,
+      "feedback": {
+        "test": 0.3362019956111908,
+        "best_params": {
+          "spectral_radius": 1.4455560769264577,
+          "sparsity": 0.9579095177853287,
+          "input_scaling": 1.3974460034870155,
+          "leaky_rate": 0.11659365229729558,
+          "ridge": 0.09332538859276404,
+          "noise": 0.005044553116942368
+        }
+      },
+      "customizable": {
+        "test": 0.31570011377334595,
+        "best_params": {
+          "r_min": 0.5580564599508026,
+          "r_max": 0.6007039115544714,
+          "alpha": 0.393134841256198,
+          "sparsity": 0.9834350652838079,
+          "input_scaling": 0.3004092324518094,
+          "leaky_rate": 0.5998961927542905,
+          "ridge": 0.027212329442309776,
+          "noise": 0.009381236590449562
+        }
+      }
+    },
+    {
+      "run_index": 3,
+      "optuna_seed": 3,
+      "feedback": {
+        "test": 0.3380165994167328,
+        "best_params": {
+          "spectral_radius": 1.498526452811011,
+          "sparsity": 0.9550299015861121,
+          "input_scaling": 1.214243274077428,
+          "leaky_rate": 0.12602483493129932,
+          "ridge": 3.1725411702008927e-09,
+          "noise": 0.0015642825331408652
+        }
+      },
+      "customizable": {
+        "test": 0.31049787998199463,
+        "best_params": {
+          "r_min": 0.2382716827008907,
+          "r_max": 0.4294639085725608,
+          "alpha": 3.9634145781123205,
+          "sparsity": 0.9273863308527651,
+          "input_scaling": 0.267435356384177,
+          "leaky_rate": 0.5289079113370894,
+          "ridge": 0.03228666949344942,
+          "noise": 0.009941544628571322
+        }
+      }
+    },
+    {
+      "run_index": 4,
+      "optuna_seed": 4,
+      "feedback": {
+        "test": 0.33079296350479126,
+        "best_params": {
+          "spectral_radius": 0.728310938888947,
+          "sparsity": 0.9582401502577964,
+          "input_scaling": 0.10413047154436439,
+          "leaky_rate": 0.4235394279382461,
+          "ridge": 3.3818660816027595e-06,
+          "noise": 0.006696864720445029
+        }
+      },
+      "customizable": {
+        "test": 0.3108232021331787,
+        "best_params": {
+          "r_min": 0.15751683320896132,
+          "r_max": 0.7125088538905341,
+          "alpha": 1.415227484787348,
+          "sparsity": 0.9203142048030808,
+          "input_scaling": 0.10457516835780988,
+          "leaky_rate": 0.9721193281690957,
+          "ridge": 0.08200427201758316,
+          "noise": 0.008243052167882752
+        }
+      }
+    },
+    {
+      "run_index": 5,
+      "optuna_seed": 5,
+      "feedback": {
+        "test": 0.3360312283039093,
+        "best_params": {
+          "spectral_radius": 1.4191579737810673,
+          "sparsity": 0.9579598754928403,
+          "input_scaling": 1.3652854984939848,
+          "leaky_rate": 0.0898829710706732,
+          "ridge": 6.77049563071082e-05,
+          "noise": 0.0002801779501206171
+        }
+      },
+      "customizable": {
+        "test": 0.3334190547466278,
+        "best_params": {
+          "r_min": 0.7694481424197305,
+          "r_max": 0.86494848068533,
+          "alpha": 3.9692713866689866,
+          "sparsity": 0.9760936040476791,
+          "input_scaling": 1.5851162041471327,
+          "leaky_rate": 0.7111950227402706,
+          "ridge": 1.4329955537332563e-09,
+          "noise": 0.0003189733116190413
+        }
+      }
+    },
+    {
+      "run_index": 6,
+      "optuna_seed": 6,
+      "feedback": {
+        "test": 0.33553528785705566,
+        "best_params": {
+          "spectral_radius": 1.4576860272054477,
+          "sparsity": 0.9575847191779192,
+          "input_scaling": 1.2260421761791145,
+          "leaky_rate": 0.07573154426260145,
+          "ridge": 2.1163266822941801e-07,
+          "noise": 9.369927949035797e-05
+        }
+      },
+      "customizable": {
+        "test": 0.32457175850868225,
+        "best_params": {
+          "r_min": 0.41079851922753063,
+          "r_max": 0.4212726459251712,
+          "alpha": 7.616441544202627,
+          "sparsity": 0.9099097420746306,
+          "input_scaling": 0.697332940962554,
+          "leaky_rate": 0.7941386261180371,
+          "ridge": 0.014867055885538943,
+          "noise": 7.475478654030056e-06
+        }
+      }
+    },
+    {
+      "run_index": 7,
+      "optuna_seed": 7,
+      "feedback": {
+        "test": 0.3145301043987274,
+        "best_params": {
+          "spectral_radius": 0.7525191267412517,
+          "sparsity": 0.9824036055007646,
+          "input_scaling": 0.34854765872355475,
+          "leaky_rate": 0.2621877393329523,
+          "ridge": 2.0542810714244168e-05,
+          "noise": 0.003663088649508773
+        }
+      },
+      "customizable": {
+        "test": 0.316824346780777,
+        "best_params": {
+          "r_min": 0.6175578965353475,
+          "r_max": 0.6574455723856912,
+          "alpha": 3.76312425630686,
+          "sparsity": 0.9055902374325181,
+          "input_scaling": 0.24915417868040451,
+          "leaky_rate": 0.7373381385529202,
+          "ridge": 2.120863194515565e-06,
+          "noise": 0.0011471667669905072
+        }
+      }
+    },
+    {
+      "run_index": 8,
+      "optuna_seed": 8,
+      "feedback": {
+        "test": 0.32437652349472046,
+        "best_params": {
+          "spectral_radius": 0.6431722266503119,
+          "sparsity": 0.9832616987212947,
+          "input_scaling": 0.4939581444569203,
+          "leaky_rate": 0.21995783348156192,
+          "ridge": 6.380136302434638e-07,
+          "noise": 0.00036641622751027776
+        }
+      },
+      "customizable": {
+        "test": 0.30876612663269043,
+        "best_params": {
+          "r_min": 0.5568057465919138,
+          "r_max": 0.8955557758954323,
+          "alpha": 0.3340405543262922,
+          "sparsity": 0.9005792278916771,
+          "input_scaling": 0.1312753387465722,
+          "leaky_rate": 0.7675081242933617,
+          "ridge": 1.0492991585732938e-09,
+          "noise": 0.009992488689138017
+        }
+      }
+    },
+    {
+      "run_index": 9,
+      "optuna_seed": 9,
+      "feedback": {
+        "test": 0.3379337787628174,
+        "best_params": {
+          "spectral_radius": 1.394144054495482,
+          "sparsity": 0.9803377694019989,
+          "input_scaling": 1.1347547821279491,
+          "leaky_rate": 0.12152207987535468,
+          "ridge": 0.0023689074025920825,
+          "noise": 6.493484191666658e-05
+        }
+      },
+      "customizable": {
+        "test": 0.32666105031967163,
+        "best_params": {
+          "r_min": 0.7452884952131965,
+          "r_max": 0.9600566833160006,
+          "alpha": 0.18154954565893872,
+          "sparsity": 0.9130338035549512,
+          "input_scaling": 0.4423550020256991,
+          "leaky_rate": 0.8803608796946871,
+          "ridge": 0.07037469683375878,
+          "noise": 6.597997283649073e-05
+        }
+      }
+    }
+  ],
+  "summary": {
+    "feedback": {
+      "run_means": [
+        0.3190905749797821,
+        0.32540926337242126,
+        0.3362019956111908,
+        0.3380165994167328,
+        0.33079296350479126,
+        0.3360312283039093,
+        0.33553528785705566,
+        0.3145301043987274,
+        0.32437652349472046,
+        0.3379337787628174
+      ],
+      "mean_of_means": 0.32979183197021483,
+      "std_of_means": 0.00802444773520399
+    },
+    "customizable": {
+      "run_means": [
+        0.328357994556427,
+        0.3213943839073181,
+        0.31570011377334595,
+        0.31049787998199463,
+        0.3108232021331787,
+        0.3334190547466278,
+        0.32457175850868225,
+        0.316824346780777,
+        0.30876612663269043,
+        0.32666105031967163
+      ],
+      "mean_of_means": 0.3197015911340714,
+      "std_of_means": 0.008034482610462577
+    },
+    "statistical_test": {
+      "type": "welch_t_test",
+      "note": "unpaired: both models see identical data in every run, so the samples differ only by search seed",
+      "t_statistic": 2.6657602365081057,
+      "p_value": 0.015754889036748952,
+      "significant": true,
+      "better_model": "customizable"
+    }
+  }
+}
