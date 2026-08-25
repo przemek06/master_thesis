@@ -61,14 +61,14 @@ def series_stats(scores):
     return {"scores": [int(s) for s in scores], "mean": float(arr.mean()), "std": float(arr.std())}
 
 
-def median_prediction(model, test_list, scores):
-    series_idx = int(np.argsort(scores)[len(scores) // 2])
-    u, y = test_list[series_idx]
-    warmup_pred = denormalize(np.asarray(model.predict(u[:WARMUP])).reshape(-1))
-    auto_pred = denormalize(np.asarray(model.predict_autonomous(len(u) - WARMUP)).reshape(-1))
-    full_pred = np.concatenate([warmup_pred, auto_pred])
-    full_target = denormalize(np.asarray(y).reshape(-1))
-    return full_target, full_pred, int(scores[series_idx])
+def all_predictions(model, series_list):
+    targets, preds = [], []
+    for u, y in series_list:
+        warmup_pred = denormalize(np.asarray(model.predict(u[:WARMUP])).reshape(-1))
+        auto_pred = denormalize(np.asarray(model.predict_autonomous(len(u) - WARMUP)).reshape(-1))
+        preds.append(np.concatenate([warmup_pred, auto_pred]).astype(np.float32))
+        targets.append(denormalize(np.asarray(y).reshape(-1)).astype(np.float32))
+    return np.stack(targets), np.stack(preds)
 
 
 def build_feedback(trial, W_in, W_fb):
@@ -159,7 +159,8 @@ def run_one(task):
     model = holder["model"]
     val_scores = eval_steps(model, val_list)
     test_scores = eval_steps(model, test_list)
-    target, pred, steps = median_prediction(model, test_list, test_scores)
+    test_targets, test_preds = all_predictions(model, test_list)
+    median_idx = int(np.argsort(test_scores)[len(test_scores) // 2])
 
     print(f"  {model_name} run {run_idx}: val {np.mean(val_scores):.1f} test {np.mean(test_scores):.1f}", flush=True)
     return {
@@ -171,9 +172,12 @@ def run_one(task):
         "test": series_stats(test_scores),
         "best_params": {k: float(v) for k, v in study.best_params.items()},
         "W": model.W.detach().cpu().numpy(),
-        "target": target,
-        "pred": pred,
-        "steps": steps,
+        "target": test_targets[median_idx],
+        "pred": test_preds[median_idx],
+        "steps": int(test_scores[median_idx]),
+        "test_targets": test_targets,
+        "test_preds": test_preds,
+        "test_steps": np.array(test_scores, dtype=np.int32),
     }
 
 
@@ -191,6 +195,9 @@ def main():
     better = "esn_customizable" if run_means["customizable"].mean() > run_means["feedback"].mean() else "esn_feedback"
 
     W_stacks = {m: np.stack([o["W"] for o in by_model[m]]) for m in MODELS}
+    all_target = {m: np.stack([o["test_targets"] for o in by_model[m]]) for m in MODELS}
+    all_pred = {m: np.stack([o["test_preds"] for o in by_model[m]]) for m in MODELS}
+    all_steps = {m: np.stack([o["test_steps"] for o in by_model[m]]) for m in MODELS}
     np.savez_compressed(
         os.path.join(HERE, "arrays.npz"),
         W_feedback=W_stacks["feedback"],
@@ -205,6 +212,12 @@ def main():
         target_customizable=by_model["customizable"][median_run["customizable"]]["target"],
         pred_customizable=by_model["customizable"][median_run["customizable"]]["pred"],
         steps_customizable=by_model["customizable"][median_run["customizable"]]["steps"],
+        all_target_feedback=all_target["feedback"],
+        all_pred_feedback=all_pred["feedback"],
+        all_steps_feedback=all_steps["feedback"],
+        all_target_customizable=all_target["customizable"],
+        all_pred_customizable=all_pred["customizable"],
+        all_steps_customizable=all_steps["customizable"],
     )
 
     run_results = []
